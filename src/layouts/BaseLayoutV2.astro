@@ -1,0 +1,72 @@
+---
+import '../styles/v2.css';
+import NavV2 from '../components/v2/NavV2.astro';
+import FooterV2 from '../components/v2/FooterV2.astro';
+import FloatersV2 from '../components/v2/FloatersV2.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonical?: string;
+  /** transparent nav over a dark hero */
+  transparentNav?: boolean;
+}
+const { title, description, image = '/img/logo-3.webp', canonical, transparentNav = false } = Astro.props;
+
+const site = Astro.site ?? new URL('https://centrobiodent.net');
+const canonicalURL = new URL(canonical ?? Astro.url.pathname, site);
+const ogImageURL = new URL(image, site);
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL.href} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:image" content={ogImageURL.href} />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:site_name" content="Centro Odontoiatrico BioDent" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+    />
+  </head>
+  <body>
+    <NavV2 transparent={transparentNav} />
+    <slot />
+    <FooterV2 />
+    <FloatersV2 />
+
+    <script>
+      // Quiet scroll reveal
+      const els = document.querySelectorAll('[data-reveal]');
+      if ('IntersectionObserver' in window && els.length) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((en) => {
+            if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+        els.forEach((el) => io.observe(el));
+      } else {
+        els.forEach((el) => el.classList.add('in'));
+      }
+    </script>
+  </body>
+</html>

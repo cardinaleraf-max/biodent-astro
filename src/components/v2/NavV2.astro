@@ -1,0 +1,110 @@
+---
+import content from '../../data/biodent-content.json';
+
+interface Props {
+  /** transparent over a dark hero until scrolled */
+  transparent?: boolean;
+}
+const { transparent = false } = Astro.props;
+const { contacts } = content;
+
+const nav = [
+  { p: '/v2/', l: 'Home' },
+  { p: '/v2/chi-siamo', l: 'Chi siamo' },
+  { p: '/v2/perche-biodent', l: 'Perché BioDent' },
+  {
+    l: 'Terapie',
+    children: [
+      { p: '/v2/odontoiatria-pediatrica', l: 'Odontoiatria Pediatrica', m: 'Per i bambini · Sedazione cosciente' },
+      { p: '/v2/ortodonzia', l: 'Ortodonzia', m: 'Intercettiva, fissa, allineatori' },
+      { p: '/v2/odontoiatria', l: 'Odontoiatria', m: 'Implantologia, conservativa, protesi' },
+      { p: '/v2/trattamenti', l: 'Tutti i trattamenti', m: 'Panoramica completa delle terapie' },
+    ],
+  },
+  { p: '/v2/medicina-estetica', l: 'Medicina estetica' },
+  { p: '/v2/tecnologie', l: 'Tecnologie' },
+  { p: '/v2/contatti', l: 'Contatti' },
+];
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/v2';
+const active = (p) => {
+  const c = p.replace(/\/$/, '');
+  return c === path || (c !== '/v2' && path.startsWith(c));
+};
+---
+
+<header class:list={['nav', { 'at-top': transparent }]} data-nav data-transparent={transparent}>
+  <div class="wrap nav-inner">
+    <a href="/v2/" class="nav-brand" aria-label="BioDent — Home">
+      <img src={contacts.logo} alt="BioDent Centro Odontoiatrico" />
+    </a>
+
+    <nav class="nav-links">
+      {nav.map((it) => it.children ? (
+        <div class="nav-grp" data-grp>
+          <button type="button" data-grp-toggle>{it.l}<span class="cv"></span></button>
+          <div class="nav-menu">
+            {it.children.map((c) => (
+              <a href={c.p}><strong>{c.l}</strong><span class="m">{c.m}</span></a>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <a href={it.p} class:list={[{ active: active(it.p) }]}>{it.l}</a>
+      ))}
+    </nav>
+
+    <div class="nav-cta">
+      <a href={`tel:${contacts.primaryPhone.replace(/\s/g, '')}`} class="nav-phone">{contacts.primaryPhone}</a>
+      <a href="/v2/contatti" class="btn btn-acc">Prenota</a>
+      <button class="nav-burger" aria-label="Apri menu" data-burger><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="nav-mobile" data-mobile>
+  {nav.flatMap((it) => it.children ? [
+    <div class="grp-label">{it.l}</div>,
+    ...it.children.map((c) => <a href={c.p} class="sub">{c.l}</a>),
+  ] : [
+    <a href={it.p}>{it.l}</a>,
+  ])}
+  <div class="m-cta">
+    <a href={`tel:${contacts.primaryPhone.replace(/\s/g, '')}`} class="btn btn-ghost">{contacts.primaryPhone}</a>
+    <a href="/v2/contatti" class="btn btn-acc">Prenota una visita</a>
+  </div>
+</div>
+
+<script>
+  const nav = document.querySelector('[data-nav]') as HTMLElement | null;
+  const transparent = nav?.dataset.transparent === 'true';
+
+  const onScroll = () => {
+    if (!nav) return;
+    const scrolled = window.scrollY > 40;
+    nav.classList.toggle('scrolled', scrolled);
+    if (transparent) nav.classList.toggle('at-top', !scrolled);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  document.querySelectorAll('[data-grp]').forEach((g) => {
+    g.querySelector('[data-grp-toggle]')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.querySelectorAll('[data-grp]').forEach((o) => o !== g && o.classList.remove('open'));
+      g.classList.toggle('open');
+    });
+  });
+  document.addEventListener('click', () => document.querySelectorAll('[data-grp].open').forEach((g) => g.classList.remove('open')));
+
+  const burger = document.querySelector('[data-burger]');
+  const mobile = document.querySelector('[data-mobile]');
+  burger?.addEventListener('click', () => {
+    const open = mobile?.classList.toggle('open');
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  mobile?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
+    mobile.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+</script>

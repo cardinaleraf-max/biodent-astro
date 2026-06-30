@@ -1,0 +1,36 @@
+---
+import content from '../../data/biodent-content.json';
+const { locations } = content;
+---
+
+<section class="section" id="sedi">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div>
+        <span class="eyebrow">Sedi</span>
+        <h2>Tre studi, la stessa cura.</h2>
+      </div>
+      <p class="lede">Sturno, Salerno e Napoli: tecnologie identiche e un team coordinato dalla Dr.ssa Azzurra Di Cecilia. Scegli la sede più vicina a te.</p>
+    </div>
+    <div class="locs">
+      {locations.map((loc, i) => (
+        <article class="loc" data-reveal data-reveal-delay={String((i % 3) + 1)}>
+          <div class="loc-top">
+            <h3>{loc.city}</h3>
+            <span class="loc-pin">{loc.pin}</span>
+          </div>
+          <div class="loc-rows">
+            <div class="loc-row"><span class="lb">Indirizzo</span><span>{loc.address}</span></div>
+            <div class="loc-row"><span class="lb">Orari</span><span>{loc.hours}</span></div>
+            <div class="loc-row"><span class="lb">Telefono</span><span>
+              {loc.phone.map((p, j) => (<>
+                <a href={`tel:${p.replace(/\s/g, '')}`}>{p}</a>{j < loc.phone.length - 1 ? ' · ' : ''}
+              </>))}
+            </span></div>
+          </div>
+          <a href="/v2/contatti" class="btn btn-ghost">Prenota a {loc.city} <span class="ar">→</span></a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

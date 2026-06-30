@@ -1,0 +1,95 @@
+---
+import content from '../../data/biodent-content.json';
+const { contacts, locations } = content;
+---
+
+<section class="section contact" id="contatti">
+  <div class="wrap contact-grid">
+    <div data-reveal>
+      <span class="eyebrow on-deep">Contatti</span>
+      <h2>Parliamo del <em>sorriso</em> della tua famiglia.</h2>
+      <p class="lede">Una prima visita per tuo figlio, un consulto ortodontico o un trattamento estetico: raccontaci cosa cerchi. Ti richiamiamo entro 24 ore lavorative.</p>
+      <div class="channels">
+        {locations.map((loc) => (
+          <div class="channel">
+            <span class="lb">{loc.city}</span>
+            {loc.phone.map((p, j) => (<>
+              <a href={`tel:${p.replace(/\s/g, '')}`}>{p}</a>{j < loc.phone.length - 1 ? ' · ' : ''}
+            </>))}
+          </div>
+        ))}
+        <div class="channel"><span class="lb">Email</span><a href={`mailto:${contacts.email}`}>{contacts.email}</a></div>
+        <div class="channel"><span class="lb">WhatsApp</span><a href={contacts.whatsappUrlPrefilled} target="_blank" rel="noopener noreferrer">{contacts.whatsapp}</a></div>
+      </div>
+    </div>
+
+    <div data-reveal data-reveal-delay="1">
+      <div class="form-card">
+        <form class="form" data-form novalidate>
+          <div class="field">
+            <label for="f-name">Nome e cognome</label>
+            <input id="f-name" name="name" placeholder="Es. Maria Esposito" />
+            <span class="err" data-err="name"></span>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="f-sede">Sede</label>
+              <select id="f-sede" name="sede">
+                <option value="">Seleziona…</option>
+                {locations.map((loc) => <option value={loc.city}>{loc.city}</option>)}
+              </select>
+              <span class="err" data-err="sede"></span>
+            </div>
+            <div class="field">
+              <label for="f-phone">Telefono</label>
+              <input id="f-phone" name="phone" placeholder="347 888 5433" />
+              <span class="err" data-err="phone"></span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" type="email" name="email" placeholder="nome@esempio.it" />
+            <span class="err" data-err="email"></span>
+          </div>
+          <div class="field">
+            <label for="f-msg">Messaggio</label>
+            <textarea id="f-msg" name="message" placeholder="Raccontaci di cosa hai bisogno…" rows="3"></textarea>
+          </div>
+          <label class="privacy">
+            <input type="checkbox" name="privacy" />
+            <span>Acconsento al trattamento dei dati come da <a href="#">Privacy Policy</a>. <span class="err" data-err="privacy"></span></span>
+          </label>
+          <button type="submit" class="btn btn-dark btn-lg submit">Invia richiesta <span class="ar">→</span></button>
+        </form>
+        <div class="form-ok" data-ok hidden>
+          <h3>Grazie.</h3>
+          <p>La tua richiesta è stata registrata. Ti contattiamo entro 24 ore lavorative.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DA COLLEGARE: invio reale del form (endpoint/email). Per ora validazione client-side, come nel sito esistente. -->
+<script>
+  const form = document.querySelector('[data-form]') as HTMLFormElement | null;
+  const ok = document.querySelector('[data-ok]') as HTMLElement | null;
+  const setErr = (k: string, m: string) => { const el = document.querySelector(`[data-err="${k}"]`); if (el) el.textContent = m; };
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    ['name', 'sede', 'phone', 'email', 'privacy'].forEach((k) => setErr(k, ''));
+    const fd = new FormData(form);
+    const name = String(fd.get('name') || '').trim();
+    const sede = String(fd.get('sede') || '');
+    const phone = String(fd.get('phone') || '').trim();
+    const email = String(fd.get('email') || '').trim();
+    let valid = true;
+    if (!name) { setErr('name', 'Inserisci il tuo nome'); valid = false; }
+    if (!sede) { setErr('sede', 'Seleziona una sede'); valid = false; }
+    if (!phone && !email) { setErr('phone', 'Lasciaci un recapito'); valid = false; }
+    if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { setErr('email', 'Email non valida'); valid = false; }
+    if (!fd.get('privacy')) { setErr('privacy', 'Devi accettare la privacy'); valid = false; }
+    if (!valid) return;
+    if (form && ok) { form.hidden = true; ok.hidden = false; }
+  });
+</script>

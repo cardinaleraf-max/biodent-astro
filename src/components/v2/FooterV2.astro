@@ -1,0 +1,59 @@
+---
+import content from '../../data/biodent-content.json';
+const { contacts, social, studio, locations } = content;
+const year = new Date().getFullYear();
+---
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <img src={contacts.logo} alt="BioDent Centro Odontoiatrico" />
+        <p>{studio.shortDescription}</p>
+        <div class="foot-social">
+          <a href={social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram BioDent">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href={social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook BioDent">
+            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h5>Terapie</h5>
+        <ul>
+          <li><a href="/v2/odontoiatria-pediatrica">Odontoiatria Pediatrica</a></li>
+          <li><a href="/v2/ortodonzia">Ortodonzia</a></li>
+          <li><a href="/v2/odontoiatria">Odontoiatria adulti</a></li>
+          <li><a href="/v2/medicina-estetica">Medicina estetica</a></li>
+          <li><a href="/v2/trattamenti">Tutti i trattamenti</a></li>
+          <li><a href="/v2/tecnologie">Tecnologie</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Centro</h5>
+        <ul>
+          <li><a href="/v2/chi-siamo">Chi siamo</a></li>
+          <li><a href="/v2/perche-biodent">Perché BioDent</a></li>
+          <li><a href="/v2/faq">FAQ</a></li>
+          <li><a href="/v2/contatti">Contatti</a></li>
+          <li><a href={contacts.whatsappUrlPrefilled} target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Sedi</h5>
+        <ul>
+          {locations.map((loc) => (
+            <li><strong>{loc.city}</strong> — {loc.streetAddress}</li>
+          ))}
+          <li><a href={`mailto:${contacts.email}`}>{contacts.email}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© {year} {studio.legal.company} — P.IVA {studio.legal.vat} — {studio.legal.albo}</span>
+      <span>{studio.directorRole}: {studio.director}</span>
+      <span><a href="#">Privacy</a> · <a href="#">Cookie</a></span>
+    </div>
+  </div>
+</footer>
