@@ -6,7 +6,7 @@ interface Props {
   transparent?: boolean;
 }
 const { transparent = false } = Astro.props;
-const { contacts } = content;
+const { contacts, social } = content;
 
 const nav = [
   { p: '/v2/', l: 'Home' },
@@ -63,15 +63,30 @@ const active = (p) => {
 </header>
 
 <div class="nav-mobile" data-mobile>
-  {nav.flatMap((it) => it.children ? [
-    <div class="grp-label">{it.l}</div>,
-    ...it.children.map((c) => <a href={c.p} class="sub">{c.l}</a>),
-  ] : [
-    <a href={it.p}>{it.l}</a>,
-  ])}
-  <div class="m-cta">
-    <a href={`tel:${contacts.primaryPhone.replace(/\s/g, '')}`} class="btn btn-ghost">{contacts.primaryPhone}</a>
-    <a href="/v2/contatti" class="btn btn-acc">Prenota una visita</a>
+  <nav class="nm-links">
+    {nav.map((it) => it.children ? (
+      <div class="nm-group">
+        <span class="nm-label">{it.l}</span>
+        {it.children.map((c) => <a href={c.p} class="nm-sub">{c.l}</a>)}
+      </div>
+    ) : (
+      <a href={it.p}>{it.l}</a>
+    ))}
+  </nav>
+  <div class="nm-foot">
+    <a href={`tel:${contacts.primaryPhone.replace(/\s/g, '')}`} class="nm-phone">{contacts.primaryPhone}</a>
+    <div class="nm-cta">
+      <a href={contacts.whatsappUrlPrefilled} target="_blank" rel="noopener noreferrer" class="btn btn-ghost">WhatsApp</a>
+      <a href="/v2/contatti" class="btn btn-acc">Prenota una visita</a>
+    </div>
+    <div class="nm-social">
+      <a href={social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href={social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+    </div>
   </div>
 </div>
 
@@ -99,12 +114,12 @@ const active = (p) => {
 
   const burger = document.querySelector('[data-burger]');
   const mobile = document.querySelector('[data-mobile]');
-  burger?.addEventListener('click', () => {
-    const open = mobile?.classList.toggle('open');
+  const setMenu = (open: boolean) => {
+    mobile?.classList.toggle('open', open);
+    burger?.classList.toggle('open', open);
+    nav?.classList.toggle('menu-open', open);
     document.body.style.overflow = open ? 'hidden' : '';
-  });
-  mobile?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
-    mobile.classList.remove('open');
-    document.body.style.overflow = '';
-  }));
+  };
+  burger?.addEventListener('click', () => setMenu(!mobile?.classList.contains('open')));
+  mobile?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
 </script>
