@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Locations from '../../components/Locations.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { getCollection, render } from 'astro:content';
+
+// Collection "casi" ancora vuota: nessun caso clinico generato per ora.
+// Il template è pronto per quando verranno aggiunti i file in src/content/casi/.
+export async function getStaticPaths() {
+  const casi = await getCollection('casi');
+  return casi.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+---
+
+<BaseLayout
+  title={`${d.title} — Casi clinici BioDent`}
+  description={`${d.problema}`}
+  canonical={`/casi/${d.slug}`}
+  image={d.immagine}
+>
+  <main class="page-enter">
+    <section class="page-head">
+      <div class="container-wide">
+        <div class="crumbs"><span>Home</span><span>Casi</span><span>{d.title}</span></div>
+        <div class="page-head-grid">
+          <div>
+            <span class="eyebrow" style="margin-bottom: 16px; display: inline-flex;">Caso clinico</span>
+            <h1>{d.title}</h1>
+          </div>
+          <div>
+            <p><strong>Paziente:</strong> {d.paziente.nome}{d.paziente.eta ? `, ${d.paziente.eta} anni` : ''}</p>
+            <p><strong>Problema:</strong> {d.problema}</p>
+            <p><strong>Soluzione:</strong> {d.soluzione}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container-wide">
+        <div class="split">
+          <div class="split-text article-body"><Content /></div>
+          <div class="split-media">
+            <img src={d.immagine} alt={d.title} />
+            <span class="badge">Caso clinico</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Locations tight />
+    <ContactForm />
+  </main>
+</BaseLayout>

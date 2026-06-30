@@ -1,0 +1,59 @@
+---
+import content from '../data/biodent-content.json';
+
+interface Props {
+  tight?: boolean;
+  alt?: boolean;
+}
+const { tight = false, alt = false } = Astro.props;
+const { locations } = content;
+---
+
+<section class={tight ? 'section-tight' : 'section'} style={alt ? 'background: var(--bg-alt);' : undefined}>
+  <div class="container-wide">
+    {!tight && (
+      <div class="sec-head">
+        <div class="left">
+          <span class="eyebrow">Sedi</span>
+          <h2>Scegli la sede<br />più vicina a te.</h2>
+        </div>
+        <p>Tre studi pensati per accogliere famiglie, con tecnologie identiche e un team coordinato dalla Dr.ssa Azzurra Di Cecilia. Stessa cura, ovunque tu sia.</p>
+      </div>
+    )}
+    <div class="locations">
+      {locations.map((loc) => (
+        <article class="location">
+          <div class="city">
+            <h3>{loc.city}</h3>
+            <span class="pin">{loc.pin}</span>
+          </div>
+          <div class="info">
+            <div class="info-row">
+              <span class="label">Indirizzo</span>
+              <span>{loc.address}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Orari</span>
+              <span>{loc.hours}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Telefono</span>
+              <span>
+                {loc.phone.map((p, j) => (
+                  <>
+                    <a href={`tel:${p.replace(/\s/g, '')}`} style="border-bottom: 1px solid currentColor;">{p}</a>
+                    {j < loc.phone.length - 1 ? ' · ' : ''}
+                  </>
+                ))}
+              </span>
+            </div>
+          </div>
+          <a href="/contatti" class="btn btn-outline" style="align-self: flex-start; margin-top: auto;">
+            Prenota a {loc.city}
+            <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="18" x2="18" y2="6"/><polyline points="9,6 18,6 18,15"/></svg>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

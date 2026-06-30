@@ -1,0 +1,217 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Locations from '../components/Locations.astro';
+import ContactForm from '../components/ContactForm.astro';
+import content from '../data/biodent-content.json';
+
+const { services, marquee, media } = content;
+
+const title = 'BioDent — Dentista a Sturno, Salerno e Napoli';
+const description =
+  'Centro Odontoiatrico BioDent della Dr.ssa Azzurra Di Cecilia. Odontoiatria pediatrica, ortodonzia, implantologia. Sedi a Sturno, Salerno e Napoli.';
+
+const slugUrl = (slug) => `/trattamenti/${slug}`;
+const serviceSlugMap = {
+  odontoiatria: 'implantologia',
+  'odontoiatria-pediatrica': 'kids-cario-test-orto-test',
+  ortodonzia: 'ortodonzia-intercettiva',
+  'medicina-estetica': 'filler-labbra',
+};
+---
+
+<BaseLayout title={title} description={description} canonical="/" image="/img/biodent-home-8.webp">
+  <main class="page-enter">
+    <!-- HERO -->
+    <section class="hero">
+      <video class="hero-video" autoplay muted loop playsinline poster={media.studioPhotos[0]}>
+        <source src={media.videoHome} type="video/mp4" />
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="container-wide hero-content">
+        <span class="kicker" style="color: rgba(255,255,255,0.85);">Dr.ssa Azzurra Di Cecilia</span>
+        <h1 style="margin-top: 16px;">Centro Odontoiatrico <em>Biodent</em></h1>
+        <p class="hero-subtitle">Studi Dentistici a<br />Sturno, Salerno e Napoli.</p>
+        <div class="hero-actions" style="margin-top: 36px;">
+          <a href={content.contacts.whatsappUrl} target="_blank" rel="noopener" class="btn">Scopri di più
+            <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="18" x2="18" y2="6"/><polyline points="9,6 18,6 18,15"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>{marquee.map((m) => <span>{m}</span>)}</span>
+        <span>{marquee.map((m) => <span>{m}</span>)}</span>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section class="section">
+      <div class="container-wide">
+        <div class="sec-head">
+          <div class="left">
+            <span class="eyebrow">Le nostre terapie</span>
+            <h2>Per la salute dentale di <em style="font-style: italic; color: var(--orange);">genitori e figli</em>.</h2>
+          </div>
+          <p>Dalla prima visita di un bambino di tre anni all'implantologia per un adulto: protocolli specializzati, tecnologie all'avanguardia e un approccio empatico costruito in 40 anni di pratica clinica.</p>
+        </div>
+        <div class="services">
+          {services.map((s) => (
+            <a class="svc" href={slugUrl(serviceSlugMap[s.slug])}>
+              <img src={s.img} alt={s.title} loading="lazy" />
+              <span class="svc-num">{s.eyebrow}</span>
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
+              <span class="svc-arrow"><svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="18" x2="18" y2="6"/><polyline points="9,6 18,6 18,15"/></svg></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ODONTOIATRIA PEDIATRICA -->
+    <section class="section" style="background: var(--bg-alt);">
+      <div class="container-wide">
+        <div class="split">
+          <div class="split-text">
+            <span class="eyebrow">Odontoiatria infantile</span>
+            <h2>Mamma e papà, da BioDent curiamo i denti <em style="font-style: italic; color: var(--orange);">e il benessere</em> dei tuoi figli.</h2>
+            <p class="split-sub">Dentisti per bambini a Sturno, Salerno e Napoli.</p>
+            <p>Il Centro Odontoiatrico BioDent della Dr.ssa Azzurra Di Cecilia è un punto di riferimento per l'odontoiatria infantile a Sturno, Salerno e Napoli. Siamo partner di spicco del network <em>Dentista Dei Bambini</em>, la rete nazionale che riunisce solo gli studi dentistici che eccellono nelle cure dentali pediatriche per approccio e protocolli.</p>
+            <div style="margin-top: 8px;">
+              <a href="/odontoiatria-pediatrica" class="btn">Vai all'odontoiatria pediatrica
+                <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="18" x2="18" y2="6"/><polyline points="9,6 18,6 18,15"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="split-media">
+            <img src={media.studioPhotos[0]} alt="Studio dentistico BioDent — odontoiatria pediatrica Sturno Salerno Napoli" />
+            <span class="badge">Studio Biodent</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BIODENT + DENTISTA DEI BAMBINI -->
+    <section class="section">
+      <div class="container-wide">
+        <div class="split reverse">
+          <div class="split-media">
+            <img src={media.studioPhotos[1]} alt="Collaborazione BioDent e Dentista dei Bambini — network nazionale pedodonzia" />
+            <span class="badge">Dentista dei Bambini</span>
+          </div>
+          <div class="split-text">
+            <span class="eyebrow">La partnership</span>
+            <h2>BioDent + Il Dentista Dei Bambini.</h2>
+            <p class="split-sub">Insieme per la salute dentale dei più piccoli.</p>
+            <p>La collaborazione tra BioDent e il <em>Dentista Dei Bambini</em> è nata per garantire ai genitori una doppia tranquillità riguardo al sorriso dei loro figli. Oltre alla nostra ventennale esperienza, siamo stati scelti come eccellenza nel campo dell'odontoiatria infantile. Ecco alcuni dei nostri punti di forza:</p>
+            <ul style="list-style: none; padding: 0; margin: 4px 0 0; display: flex; flex-direction: column; gap: 12px;">
+              <li><strong style="color: var(--ink);">Tell-Show-Do</strong> — <span style="color: var(--ink-2);">Tramite spiegazione, dimostrazione e un'esecuzione delicata del trattamento riduciamo l'ansia nei bambini.</span></li>
+              <li><strong style="color: var(--ink);">Kids Cario Test · Orto Test</strong> — <span style="color: var(--ink-2);">Valutiamo la salute orale in modo rapido e approfondito, anche con il test salivare.</span></li>
+              <li><strong style="color: var(--ink);">Ozonoterapia</strong> — <span style="color: var(--ink-2);">Usiamo l'ozono per disinfettare le carie, riducendo gli interventi invasivi e favorendo una guarigione rapida.</span></li>
+              <li><strong style="color: var(--ink);">Special needs</strong> — <span style="color: var(--ink-2);">Curiamo i bambini con bisogni speciali grazie a protocolli testati e certificati con sedazione.</span></li>
+            </ul>
+            <div style="margin-top: 16px;">
+              <a href="/odontoiatria-pediatrica" class="btn">BioDent è il dentista dei bambini
+                <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="18" x2="18" y2="6"/><polyline points="9,6 18,6 18,15"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERCHÉ SCEGLIERE BIODENT -->
+    <section class="section" style="background: var(--bg-alt);">
+      <div class="container-wide">
+        <div class="split">
+          <div class="split-text">
+            <span class="eyebrow">Il nostro approccio</span>
+            <h2>Perché scegliere BioDent per i tuoi figli.</h2>
+            <p class="split-sub">Approccio delicato e rassicurante per i piccoli pazienti.</p>
+            <p>Le cure dentali per i bambini richiedono attenzione al benessere psicologico e al comfort dei più piccoli, oltre che competenze specifiche. La Dr.ssa Azzurra Di Cecilia adotta un approccio psicologico che aiuta i piccoli pazienti a sentirsi a loro agio e a non temere le visite dentistiche, combinato a protocolli di <em>Sedazione Cosciente</em> sicuri ed efficaci, con cui i bambini si rilassano e avvertono limitatamente il dolore.</p>
+            <p style="color: var(--ink); font-weight: 600;">Scegli i professionisti dell'odontoiatria pediatrica per i tuoi bambini.</p>
+          </div>
+          <div class="split-media">
+            <img src={media.studioPhotos[2]} alt="Sala operatoria Studio BioDent — sedazione cosciente per bambini" />
+            <span class="badge">Sedazione cosciente</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORTODONZIA -->
+    <section class="section">
+      <div class="container-wide">
+        <div class="split reverse">
+          <div class="split-media">
+            <img src="/img/biodent-home-25.webp" alt="Allineatori trasparenti ortodonzia — BioDent Napoli Salerno Sturno" />
+            <span class="badge">Allineatori trasparenti</span>
+          </div>
+          <div class="split-text">
+            <span class="eyebrow">Ortodonzia</span>
+            <h2>Ortodonzia intercettiva, fissa e <em style="font-style: italic; color: var(--orange);">invisibile</em>.</h2>
+            <p class="split-sub">Interveniamo a ogni età per garantire denti dritti e un sorriso sano.</p>
+            <p>Con l'ortodonzia intercettiva preveniamo e correggiamo precocemente le problematiche dentali nei più piccoli, evitando trattamenti futuri più invasivi. Per adolescenti e adulti impieghiamo apparecchi fissi o allineatori trasparenti, che garantiscono discrezione e comfort, per una terapia serena e un sorriso perfetto.</p>
+            <div style="margin-top: 8px;">
+              <a href="/ortodonzia" class="btn">Ortodonzia
+                <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="18" x2="18" y2="6"/><polyline points="9,6 18,6 18,15"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ODONTOIATRIA DELL'ADULTO -->
+    <section class="section" style="background: var(--bg-alt);">
+      <div class="container-wide">
+        <div class="split">
+          <div class="split-text">
+            <span class="eyebrow">Odontoiatria</span>
+            <h2>Odontoiatria dell'adulto.</h2>
+            <p class="split-sub">Cure dentali avanzate, dagli impianti alle faccette dentali.</p>
+            <p>Con le nostre tecniche di implantologia e chirurgia orale ripristiniamo la funzionalità e l'estetica del tuo sorriso in modo sicuro e duraturo. Non solo salute, ma anche bellezza: con i trattamenti di estetica dentale come le faccette dentali, il tuo sorriso sarà luminoso e in perfetta armonia.</p>
+            <div style="margin-top: 8px;">
+              <a href="/odontoiatria" class="btn">Odontoiatria generale
+                <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="18" x2="18" y2="6"/><polyline points="9,6 18,6 18,15"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="split-media">
+            <img src="/img/odontoiatria-12.webp" alt="Odontoiatria implantologia adulti — Studio BioDent" />
+            <span class="badge">Implantologia</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEDICINA ESTETICA -->
+    <section class="section">
+      <div class="container-wide">
+        <div class="split reverse">
+          <div class="split-media">
+            <img src="/img/biodent-home-19.webp" alt="Filler labbra e medicina estetica — BioDent" />
+            <span class="badge">Medicina estetica</span>
+          </div>
+          <div class="split-text">
+            <span class="eyebrow">Medicina estetica</span>
+            <h2>Medicina estetica ad Avellino, Salerno e Napoli.</h2>
+            <p class="split-sub">Valorizziamo la tua naturale bellezza con trattamenti antiage.</p>
+            <p>I nostri filler e trattamenti di medicina estetica riducono le rughe e ridefiniscono i contorni del viso per un aspetto fresco e naturale. Con la biorivitalizzazione restituiamo alla tua pelle tonicità e idratazione profonda, per un risultato giovane e luminoso.</p>
+            <div style="margin-top: 8px;">
+              <a href="/medicina-estetica" class="btn">Medicina estetica
+                <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="18" x2="18" y2="6"/><polyline points="9,6 18,6 18,15"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Locations alt />
+    <ContactForm />
+  </main>
+</BaseLayout>

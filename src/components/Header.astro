@@ -1,0 +1,121 @@
+---
+import content from '../data/biodent-content.json';
+
+const { contacts, social } = content;
+
+const navItems = [
+  { p: '/', l: 'Home' },
+  { p: '/chi-siamo', l: 'Chi siamo' },
+  { p: '/perche-biodent', l: 'Perché BioDent' },
+  {
+    l: 'Terapie',
+    children: [
+      { p: '/odontoiatria-pediatrica', l: 'Odontoiatria Pediatrica', m: 'Per i bambini · Sedazione cosciente' },
+      { p: '/ortodonzia', l: 'Ortodonzia', m: 'Intercettiva, fissa, allineatori' },
+      { p: '/odontoiatria', l: 'Odontoiatria', m: 'Implantologia, conservativa, protesi' },
+      { p: '/trattamenti', l: 'Tutti i trattamenti', m: 'Panoramica completa delle terapie' },
+    ],
+  },
+  { p: '/medicina-estetica', l: 'Medicina estetica' },
+  { p: '/tecnologie', l: 'Tecnologie' },
+  { p: '/contatti', l: 'Contatti' },
+];
+
+const path = Astro.url.pathname;
+const isActive = (p) => p === path || (p !== '/' && path.startsWith(p.split('#')[0]) && p.split('#')[0] !== '/');
+---
+
+<header class="topbar">
+  <div class="container-wide">
+    <div class="topbar-inner" data-topbar>
+      <a href="/" class="brand" aria-label="BioDent — Home">
+        <img src={contacts.logo} alt="BioDent Centro Odontoiatrico" class="brand-logo" />
+      </a>
+
+      <nav class="nav">
+        {navItems.map((it) => it.children ? (
+          <div class="nav-group" data-navgroup>
+            <button type="button" data-navtoggle>
+              <span>{it.l}</span>
+              <span class="caret"></span>
+            </button>
+            <div class="menu">
+              {it.children.map((c) => (
+                <a href={c.p}>
+                  {c.l}
+                  <span class="meta">{c.m}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <a href={it.p} class={isActive(it.p) ? 'active' : ''}>{it.l}</a>
+        ))}
+      </nav>
+
+      <button class="menu-btn" aria-label="Menu" data-mobiletoggle></button>
+
+      <div class="top-cta">
+        <span class="phone-link">
+          <span class="dot"></span>
+          {contacts.primaryPhone}
+        </span>
+        <a href="/contatti" class="btn">Prenota
+          <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="18" x2="18" y2="6"/><polyline points="9,6 18,6 18,15"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="mobile-menu" data-mobilemenu hidden>
+      {navItems.flatMap((it) => it.children ? [
+        <div class="mobile-group-label">{it.l}</div>,
+        ...it.children.map((c) => <a href={c.p} class="mobile-link sub">{c.l}</a>),
+      ] : [
+        <a href={it.p} class="mobile-link">{it.l}</a>,
+      ])}
+      <div class="mobile-social">
+        <span>Seguici</span>
+        <a href={social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href={social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .mobile-menu { padding-bottom: 24px; flex-direction: column; gap: 4px; border-top: 1px solid var(--line); }
+  .mobile-menu:not([hidden]) { display: flex; }
+  .mobile-group-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); padding: 16px 0 4px; }
+  .mobile-link { padding: 12px 0; font-size: 18px; font-family: var(--display); border-top: 1px solid var(--line); }
+  .mobile-link.sub { padding: 8px 0; font-size: 16px; font-family: var(--body); border-top: none; }
+  .mobile-social { display: flex; gap: 12px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line); align-items: center; }
+  .mobile-social span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-3); margin-right: 4px; }
+  .mobile-social a { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); color: var(--ink-2); }
+  .mobile-social svg { width: 18px; height: 18px; }
+</style>
+
+<script>
+  // Dropdown "Terapie"
+  document.querySelectorAll('[data-navgroup]').forEach((group) => {
+    const toggle = group.querySelector('[data-navtoggle]');
+    toggle?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      group.classList.toggle('open');
+    });
+  });
+  document.addEventListener('click', () => {
+    document.querySelectorAll('[data-navgroup].open').forEach((g) => g.classList.remove('open'));
+  });
+
+  // Mobile menu
+  const mobileToggle = document.querySelector('[data-mobiletoggle]');
+  const mobileMenu = document.querySelector('[data-mobilemenu]');
+  mobileToggle?.addEventListener('click', () => {
+    if (!mobileMenu) return;
+    mobileMenu.hidden = !mobileMenu.hidden;
+  });
+</script>

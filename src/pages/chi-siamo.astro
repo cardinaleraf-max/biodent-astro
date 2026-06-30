@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHead from '../components/PageHead.astro';
+import Locations from '../components/Locations.astro';
+import ContactForm from '../components/ContactForm.astro';
+import content from '../data/biodent-content.json';
+
+const { staff } = content;
+const title = 'Chi Siamo — Centro Odontoiatrico BioDent';
+const description =
+  "Scopri il team di BioDent: oltre 40 anni di esperienza in odontoiatria, un approccio empatico e tecnologie all'avanguardia per tutta la famiglia.";
+---
+
+<BaseLayout title={title} description={description} canonical="/chi-siamo">
+  <main class="page-enter">
+    <PageHead
+      crumbs={['Home', 'Chi siamo']}
+      kicker="Storia · Staff · Valori"
+      title="Quattro <em>decenni</em><br/>di sorrisi,<br/>una famiglia<br/>di professionisti."
+      lead="Da oltre 40 anni BioDent è il punto di riferimento per la cura dentale delle famiglie. Guidato oggi dalla Dr.ssa Azzurra Di Cecilia, lo studio continua la tradizione familiare introducendo tecnologie all'avanguardia e servizi su misura per grandi e piccoli."
+    />
+
+    <!-- La storia -->
+    <section class="section-tight">
+      <div class="container-wide">
+        <div class="split">
+          <div class="split-text">
+            <span class="eyebrow">La storia</span>
+            <h2>Dove tradizione e<br />innovazione si<br />incontrano.</h2>
+            <p>Da oltre <strong>40 anni</strong>, BioDent è il punto di riferimento per la cura dentale delle famiglie. La Dott.ssa Di Cecilia ha saputo rinnovare l'approccio, mettendo al centro l'<em>empatia</em> e un'attenzione speciale per i bambini.</p>
+            <p>Per questo impegno costante BioDent è partner del <em>Dentista dei Bambini</em> su Sturno, Salerno e Napoli — la rete nazionale che riunisce solo gli studi dentistici che eccellono nelle cure pediatriche per approccio e protocolli.</p>
+          </div>
+          <div class="split-media">
+            <img src="/img/biodent-home-22.webp" alt="Storico studio dentistico BioDent — tradizione familiare e innovazione" />
+            <span class="badge">Studio Biodent</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Studio a misura di bambino -->
+    <section class="section" style="background: var(--bg-alt);">
+      <div class="container-wide">
+        <div class="split reverse">
+          <div class="split-media" style="aspect-ratio: 3/4;">
+            <img src="/img/chi-siamo-5.webp" alt="Area pediatrica colorata Studio BioDent — spazio a misura di bambino" />
+            <span class="badge">Area pediatrica</span>
+          </div>
+          <div class="split-text">
+            <span class="eyebrow">Spazi</span>
+            <h2>Uno studio a misura di<br /><em style="font-style: italic; color: var(--orange);">bambino</em>… e di<br />genitore.</h2>
+            <p>La nostra specializzazione nell'odontoiatria infantile è arricchita da uno spazio esclusivo: una grande area dedicata ai bambini, con <strong>due postazioni colorate (una a forma di drago!)</strong>, una sala d'attesa accogliente per tutte le età e un parco giochi esterno attrezzato.</p>
+            <p>I piccoli pazienti possono rilassarsi e distrarsi, trasformando la visita dentistica in un'esperienza serena.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Valori -->
+    <section class="section" style="background: var(--bg-alt);">
+      <div class="container-wide">
+        <div style="max-width: 760px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; gap: 20px;">
+          <span class="eyebrow" style="align-self: center;">I nostri valori</span>
+          <h2 style="max-width: none;">Professionalità, competenza ed <em style="font-style: italic; color: var(--orange);">empatia</em>.</h2>
+          <p style="color: var(--ink-2); font-size: clamp(16px, 1.2vw, 19px);">Da Biodent, ogni sorriso è speciale. Empatia, competenza e professionalità sono i valori che ci guidano ogni giorno per creare un ambiente sicuro e accogliente.</p>
+          <p style="color: var(--ink-2); font-size: clamp(16px, 1.2vw, 19px);">Vieni a trovarci e scopri uno studio pensato per la tua famiglia, dove la salute dentale è alla portata di tutti, con un servizio di qualità che rispetta i tuoi bisogni e quelli dei tuoi cari.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Staff -->
+    <section class="section">
+      <div class="container-wide">
+        <div style="max-width: 720px; margin: 0 auto clamp(40px, 5vw, 72px); text-align: center; display: flex; flex-direction: column; gap: 16px;">
+          <span class="eyebrow" style="align-self: center;">Lo staff</span>
+          <h2 style="max-width: none;">Le persone che si prenderanno cura del tuo sorriso.</h2>
+          <p style="color: var(--ink-2); font-size: clamp(16px, 1.2vw, 18px);">Un team multidisciplinare di odontoiatri, ortodontisti, igienisti e specialisti, coordinati dalla Dr.ssa Azzurra Di Cecilia, Direttore Sanitario di BioDent.</p>
+        </div>
+        <div class="staff-grid">
+          {staff.map((s) => (
+            <div class="staff-card">
+              <div class="staff-photo"><img src={s.img} alt={s.name} loading="lazy" /></div>
+              <h4>{s.name}</h4>
+              <span class="role">{s.role}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <Locations tight />
+    <ContactForm />
+  </main>
+</BaseLayout>

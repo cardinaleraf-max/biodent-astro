@@ -1,0 +1,62 @@
+---
+import content from '../data/biodent-content.json';
+
+const { contacts, social, studio, locations } = content;
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container-wide">
+    <div class="footer-top">
+      <div>
+        <img src={contacts.logo} alt="BioDent Centro Odontoiatrico" class="footer-logo" />
+        <p style="margin-top: 14px; font-size: 13px; color: var(--ink-2); max-width: 32ch;">
+          {studio.shortDescription}
+        </p>
+        <div class="footer-social">
+          <a href={social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram BioDent">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href={social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook BioDent">
+            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h5>Terapie</h5>
+        <ul>
+          <li><a href="/odontoiatria-pediatrica">Odontoiatria Pediatrica</a></li>
+          <li><a href="/ortodonzia">Ortodonzia</a></li>
+          <li><a href="/odontoiatria">Odontoiatria adulti</a></li>
+          <li><a href="/medicina-estetica">Medicina estetica</a></li>
+          <li><a href="/trattamenti">Tutti i trattamenti</a></li>
+          <li><a href="/tecnologie">Tecnologie</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Centro</h5>
+        <ul>
+          <li><a href="/chi-siamo">Chi siamo</a></li>
+          <li><a href="/perche-biodent">Perché BioDent</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/contatti">Contatti</a></li>
+          <li><a href={contacts.whatsappUrlPrefilled} target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Sedi</h5>
+        <ul>
+          {locations.map((loc) => (
+            <li><strong style="color: var(--ink);">{loc.city}</strong> — {loc.streetAddress}</li>
+          ))}
+          <li><a href={`mailto:${contacts.email}`}>{contacts.email}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© {year} {studio.legal.company} — P.IVA {studio.legal.vat} — {studio.legal.albo}</span>
+      <span>{studio.directorRole}: {studio.director}</span>
+      <span><a href="#">Privacy</a> · <a href="#">Cookie</a> · <a href="#">Polizza</a></span>
+    </div>
+  </div>
+</footer>

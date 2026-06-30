@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Locations from '../components/Locations.astro';
+import ContactForm from '../components/ContactForm.astro';
+import content from '../data/biodent-content.json';
+
+const { values, stats, technologies } = content;
+const tac = technologies.find((t) => t.t === 'TC Cone Beam 3D');
+
+const title = 'Perché BioDent';
+const description = 'Perché scegliere il Centro Odontoiatrico BioDent: tradizione familiare lunga 40 anni, tre sedi in Campania, tecnologie avanzate e un team multidisciplinare.';
+
+// 4 punti chiave: 3 sedi · esperienza pluriennale · TAC 3D · team multidisciplinare
+const differenziatori = [
+  { n: '3', t: 'Sedi', d: 'Sturno, Salerno e Napoli — sempre vicini alle famiglie.' },
+  { n: '40+', t: 'Anni di esperienza', d: 'Una tradizione familiare nata nel 1985, oggi guidata dalla Dr.ssa Azzurra Di Cecilia: quarant\'anni di pratica clinica al servizio del sorriso.' },
+  { n: 'TAC 3D', t: tac?.t ?? 'TC Cone Beam 3D', d: tac?.d ?? null },
+  { n: '∞', t: 'Team multidisciplinare', d: 'Un team multidisciplinare con specializzazioni in pedodonzia, ortodonzia, implantologia e medicina estetica.' },
+];
+---
+
+<BaseLayout title={title} description={description} canonical="/perche-biodent">
+  <main class="page-enter">
+    <!-- INTESTAZIONE -->
+    <section class="page-head">
+      <div class="container-wide">
+        <div class="crumbs"><span>Home</span><span>Perché BioDent</span></div>
+        <div class="page-head-grid">
+          <div>
+            <span class="eyebrow" style="margin-bottom: 16px; display: inline-flex;">Perché sceglierci</span>
+            <h1>Perché <em>BioDent</em>.</h1>
+            <p class="split-sub" style="margin-top: 16px;">Tradizione familiare, sguardo sul futuro.</p>
+          </div>
+          <div>
+            <p style="color: var(--ink-2); font-size: clamp(16px, 1.2vw, 18px); line-height: 1.65;">Scegliere BioDent significa affidarsi a una tradizione familiare lunga oltre quarant'anni, oggi guidata dalla Dr.ssa Azzurra Di Cecilia. Un unico centro in cui competenza specialistica, tecnologie d'avanguardia ed empatia si incontrano per prendersi cura di tutta la famiglia — dal primo dentino del bambino all'implantologia dell'adulto — con la stessa attenzione nelle nostre tre sedi di Sturno, Salerno e Napoli.</p>
+            <div style="margin-top: 28px; display: flex; gap: 12px;">
+              <a href="/contatti" class="btn">Prenota una visita
+                <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="18" x2="18" y2="6"/><polyline points="9,6 18,6 18,15"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 PUNTI CHIAVE (dati esistenti) -->
+    <section class="section-tight">
+      <div class="container-wide">
+        <div class="stats">
+          {differenziatori.map((d) => (
+            <div class="stat">
+              <span class="lbl">{d.t}</span>
+              <span class="n">{d.n}</span>
+              {d.d ? <p>{d.d}</p> : <p style="color: var(--ink-3);">[ DA SCRIVERE ]</p>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- I NOSTRI VALORI (V.01–V.04, dati esistenti) -->
+    <section class="section" style="background: var(--bg-alt);">
+      <div class="container-wide">
+        <div class="sec-head">
+          <div class="left">
+            <span class="eyebrow">I nostri valori</span>
+            <h2>Professionalità, competenza ed <em style="font-style: italic; color: var(--orange);">empatia</em>.</h2>
+          </div>
+          <p>Da Biodent, ogni sorriso è speciale. Empatia, competenza e professionalità sono i valori che ci guidano ogni giorno.</p>
+        </div>
+        <div class="therapy-list">
+          {values.map((v) => (
+            <div class="therapy">
+              <span class="num">{v.n}</span>
+              <h4>{v.t}</h4>
+              <p>{v.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- STATISTICHE (4 stat, dati esistenti) -->
+    <section class="section">
+      <div class="container-wide">
+        <div class="stats">
+          {stats.map((s) => (
+            <div class="stat">
+              <span class="lbl">{s.lbl}</span>
+              <span class="n">{s.n}</span>
+              <p>{s.p}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- UNA FAMIGLIA CHE CURA LE FAMIGLIE -->
+    <section class="section" style="background: var(--bg-alt);">
+      <div class="container-wide">
+        <div class="split">
+          <div class="split-media">
+            <img src="/img/chi-siamo-4.webp" alt="Centro Odontoiatrico BioDent — una tradizione familiare nella cura del sorriso" />
+            <span class="badge">Dal 1985</span>
+          </div>
+          <div class="split-text">
+            <span class="eyebrow">Una storia di famiglia</span>
+            <h2>Una famiglia che cura <em style="font-style: italic; color: var(--orange);">le famiglie</em>.</h2>
+            <p>Da oltre quarant'anni BioDent è il punto di riferimento per la cura dentale delle famiglie del territorio. La Dr.ssa Azzurra Di Cecilia ha raccolto e rinnovato questa eredità, mettendo al centro l'empatia e un'attenzione speciale per i bambini.</p>
+            <p>Per questo impegno BioDent è partner del <em>Dentista dei Bambini</em> su Sturno, Salerno e Napoli: la rete nazionale che riunisce solo gli studi che eccellono nelle cure pediatriche per approccio e protocolli. Per i genitori, una doppia garanzia sul sorriso dei propri figli.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECNOLOGIA AL SERVIZIO DELLA CURA -->
+    <section class="section">
+      <div class="container-wide">
+        <div class="sec-head">
+          <div class="left">
+            <span class="eyebrow">Tecnologia</span>
+            <h2>Strumenti d'avanguardia,<br />cure più <em style="font-style: italic; color: var(--orange);">delicate</em>.</h2>
+          </div>
+          <p>Investiamo nelle tecnologie che rendono diagnosi e trattamenti più precisi, rapidi e confortevoli — spesso senza trapano e con tempi di recupero ridotti.</p>
+        </div>
+        <div class="tech-grid">
+          {technologies.map((t) => (
+            <div class="tech-item">
+              <span class="t-index">{t.n}</span>
+              <h4>{t.t}</h4>
+              <p>{t.d}</p>
+            </div>
+          ))}
+        </div>
+        <div style="margin-top: 32px;">
+          <a href="/tecnologie" class="btn">Scopri tutte le tecnologie
+            <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="18" x2="18" y2="6"/><polyline points="9,6 18,6 18,15"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <Locations tight />
+    <ContactForm />
+  </main>
+</BaseLayout>

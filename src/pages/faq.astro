@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Locations from '../components/Locations.astro';
+import ContactForm from '../components/ContactForm.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import { faqPageJsonLd } from '../lib/jsonld';
+import sezioni from '../data/faq-generali.json';
+
+const title = 'Domande frequenti — BioDent';
+const description =
+  'Le risposte alle domande più frequenti dei pazienti del Centro Odontoiatrico BioDent: prima visita, sedi, costi, bambini, urgenze, tecnologie e prevenzione.';
+
+// JSON-LD FAQPage aggregato su tutte le sezioni (escluse le voci [DA CONFERMARE]).
+const allItems = sezioni.flatMap((s) => s.items);
+const faqLd = faqPageJsonLd(allItems, 'https://centrobiodent.net/faq');
+---
+
+<BaseLayout title={title} description={description} canonical="/faq">
+  {faqLd && <script type="application/ld+json" slot="jsonld" set:html={JSON.stringify(faqLd)} />}
+
+  <main class="page-enter">
+    <section class="page-head">
+      <div class="container-wide">
+        <div class="crumbs"><span>Home</span><span>FAQ</span></div>
+        <div class="page-head-grid">
+          <div>
+            <span class="eyebrow" style="margin-bottom: 16px; display: inline-flex;">FAQ</span>
+            <h1>Domande<br/><em>frequenti</em>.</h1>
+          </div>
+          <div>
+            <p>Le risposte alle domande che ci fanno più spesso i pazienti al telefono e in studio, raggruppate per tema. Per tutto il resto, scrivici.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background: var(--bg-alt);">
+      <div class="container">
+        {sezioni.map((s) => (
+          <FaqAccordion items={s.items} heading={s.title} />
+        ))}
+      </div>
+    </section>
+
+    <Locations tight />
+    <ContactForm />
+  </main>
+</BaseLayout>

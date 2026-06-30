@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Locations from '../../components/Locations.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { getCollection } from 'astro:content';
+
+const tecnologie = (await getCollection('tecnologie')).sort(
+  (a, b) => (a.data.ordine ?? 0) - (b.data.ordine ?? 0)
+);
+
+const title = 'Tecnologie Dentali Avanzate — BioDent';
+const description =
+  'Scanner intraorale 3D, TC Cone Beam, laser a diodo, sedazione cosciente e chirurgia guidata. Tecnologie di punta nei nostri studi dentistici.';
+---
+
+<BaseLayout title={title} description={description} canonical="/tecnologie">
+  <main class="page-enter">
+    <section class="page-head">
+      <div class="container-wide">
+        <div class="crumbs"><span>Home</span><span>Tecnologie</span></div>
+        <div class="page-head-grid">
+          <div>
+            <span class="eyebrow" style="margin-bottom: 16px; display: inline-flex;">Strumenti per diagnosi precise e cure mirate</span>
+            <h1>Le <em>tecnologie</em><br/>che cambiano<br/>l'esperienza dal<br/>dentista.</h1>
+          </div>
+          <div>
+            <p>Al Centro Odontoiatrico BioDent forniamo trattamenti odontoiatrici all'avanguardia, avvalendoci delle tecnologie più avanzate per eseguire diagnosi più precise e pianificare cure ancora più mirate ed efficaci.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container-wide">
+        {tecnologie.map((t, i) => (
+          <article style={`padding-top: ${i === 0 ? 0 : 48}px; padding-bottom: 48px; border-bottom: ${i === tecnologie.length - 1 ? 'none' : '1px solid var(--line)'};`}>
+            <div class="split" style={i % 2 === 1 ? 'grid-template-columns: 1fr 1.1fr;' : undefined}>
+              {i % 2 === 1 ? (
+                <>
+                  <div class="split-media" style="aspect-ratio: 5/4;">
+                    <img src={t.data.immagine} alt={t.data.title} />
+                    <span class="badge">{`T.${String(t.data.ordine).padStart(2, '0')}`}</span>
+                  </div>
+                  <div class="split-text">
+                    <span class="eyebrow">{`T.${String(t.data.ordine).padStart(2, '0')}`}</span>
+                    <h2 style="font-size: clamp(28px, 3.6vw, 48px);"><a href={`/tecnologie/${t.data.slug}`}>{t.data.title}</a></h2>
+                    <p style="font-size: 17px;">{t.data.descrizioneBreve}</p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div class="split-text">
+                    <span class="eyebrow">{`T.${String(t.data.ordine).padStart(2, '0')}`}</span>
+                    <h2 style="font-size: clamp(28px, 3.6vw, 48px);"><a href={`/tecnologie/${t.data.slug}`}>{t.data.title}</a></h2>
+                    <p style="font-size: 17px;">{t.data.descrizioneBreve}</p>
+                  </div>
+                  <div class="split-media" style="aspect-ratio: 5/4;">
+                    <img src={t.data.immagine} alt={t.data.title} />
+                    <span class="badge">{`T.${String(t.data.ordine).padStart(2, '0')}`}</span>
+                  </div>
+                </>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <Locations tight />
+    <ContactForm />
+  </main>
+</BaseLayout>

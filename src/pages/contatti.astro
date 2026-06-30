@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHead from '../components/PageHead.astro';
+import Locations from '../components/Locations.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+const title = 'Contatti — BioDent Sturno, Salerno, Napoli';
+const description =
+  'Prenota una visita al Centro Odontoiatrico BioDent. Tre sedi: Sturno (AV), Salerno e Napoli. Contatti, orari e come raggiungerci.';
+---
+
+<BaseLayout title={title} description={description} canonical="/contatti">
+  <main class="page-enter">
+    <PageHead
+      crumbs={['Home', 'Contatti']}
+      kicker="Tre sedi, un unico team"
+      title="<em>Parliamo</em> del<br/>tuo sorriso."
+      lead="Compila il modulo, chiamaci o scrivici su WhatsApp. Ti rispondiamo entro 24 ore lavorative. Per le urgenze chiama direttamente la sede a te più vicina."
+    />
+    <Locations />
+    <ContactForm />
+  </main>
+</BaseLayout>

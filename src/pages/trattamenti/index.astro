@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Locations from '../../components/Locations.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { getCollection } from 'astro:content';
+
+const trattamenti = await getCollection('trattamenti');
+
+const categorie = [
+  { id: 'pediatrica', label: 'Odontoiatria Pediatrica' },
+  { id: 'ortodonzia', label: 'Ortodonzia' },
+  { id: 'odontoiatria', label: 'Odontoiatria' },
+  { id: 'estetica', label: 'Medicina Estetica' },
+];
+
+const byCat = (cat) =>
+  trattamenti
+    .filter((t) => t.data.categoria === cat)
+    .sort((a, b) => a.data.ordine - b.data.ordine);
+
+const title = 'Trattamenti — Centro Odontoiatrico BioDent';
+const description = 'Tutti i trattamenti odontoiatrici di BioDent: pediatrica, ortodonzia, odontoiatria dell\'adulto e medicina estetica.';
+---
+
+<BaseLayout title={title} description={description} canonical="/trattamenti">
+  <main class="page-enter">
+    <section class="page-head">
+      <div class="container-wide">
+        <div class="crumbs"><span>Home</span><span>Trattamenti</span></div>
+        <div class="page-head-grid">
+          <div>
+            <span class="eyebrow" style="margin-bottom: 16px; display: inline-flex;">Le nostre terapie</span>
+            <h1>I nostri <em>trattamenti</em>.</h1>
+          </div>
+          <div>
+            <p>Dalla prima visita pediatrica all'implantologia, fino alla medicina estetica: protocolli specializzati in un unico centro.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {categorie.map((cat) => (
+      <section class="section" id={cat.id}>
+        <div class="container-wide">
+          <div class="sec-head">
+            <div class="left">
+              <span class="eyebrow">{cat.label}</span>
+              <h2>{cat.label}.</h2>
+            </div>
+          </div>
+          <div class="therapy-list">
+            {byCat(cat.id).map((t) => (
+              <a class="therapy" href={`/trattamenti/${t.data.slug}`}>
+                <span class="num">{String(t.data.ordine).padStart(2, '0')}</span>
+                <h4>{t.data.title}</h4>
+                <p>{t.data.descrizioneBreve}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <Locations tight />
+    <ContactForm />
+  </main>
+</BaseLayout>

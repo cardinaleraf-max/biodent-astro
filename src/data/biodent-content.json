@@ -1,0 +1,238 @@
+{
+  "studio": {
+    "name": "Centro Odontoiatrico BioDent",
+    "brand": "biodent",
+    "director": "Dr.ssa Azzurra Di Cecilia",
+    "directorRole": "Direttore Sanitario",
+    "tagline": "Dentisti di famiglia, specialisti dei bambini.",
+    "shortDescription": "Centro Odontoiatrico della Dr.ssa Azzurra Di Cecilia. Dentisti di famiglia a Sturno, Salerno e Napoli.",
+    "longDescription": "Centro odontoiatrico specializzato in odontoiatria pediatrica, ortodonzia, implantologia e medicina estetica.",
+    "yearsActive": "40+",
+    "since": "1985",
+    "partnership": "Partner del network nazionale \"Dentista dei Bambini\"",
+    "legal": {
+      "company": "BioDent S.r.l.",
+      "vat": "02517430647",
+      "albo": "Iscrizione albo AV n. 315"
+    }
+  },
+  "contacts": {
+    "primaryPhone": "0825 448151",
+    "email": "bcomebiodent@virgilio.it",
+    "whatsapp": "+39 347 888 5433",
+    "whatsappUrl": "https://wa.me/393478885433",
+    "whatsappUrlPrefilled": "https://wa.me/393478885433?text=Salve%2C%20vorrei%20prenotare%20una%20visita%20al%20Centro%20Odontoiatrico%20BioDent.",
+    "website": "https://centrobiodent.net",
+    "logo": "/img/logo-3.webp"
+  },
+  "social": {
+    "_note": "URL definitivi confermati dal cliente (2026-06-24) — da usare ovunque, anche nel JSON-LD sameAs.",
+    "instagram": "https://www.instagram.com/biodent.centro.odontoiatrico/",
+    "facebook": "https://www.facebook.com/people/Centro-Odontoiatrico-Biodent-Dottssa-Azzurra-Di-Cecilia/100031641229924/"
+  },
+  "locations": [
+    {
+      "city": "Sturno",
+      "pin": "AV — Sede principale",
+      "isPrimary": true,
+      "address": "Via Roma, 11 — Sturno (AV)",
+      "streetAddress": "Via Roma, 11",
+      "addressLocality": "Sturno",
+      "addressRegion": "AV",
+      "postalCode": "83055",
+      "addressCountry": "IT",
+      "phone": ["0825 448151", "347 888 5433"],
+      "hours": "lun. – ven. 9:00 – 13:00 / 14:30 – 18:30",
+      "coordinates": { "latitude": 41.0103, "longitude": 15.1074 }
+    },
+    {
+      "city": "Napoli",
+      "pin": "NA",
+      "isPrimary": false,
+      "address": "Corso Secondigliano, 398 — 80144 Napoli",
+      "streetAddress": "Corso Secondigliano, 398",
+      "addressLocality": "Napoli",
+      "addressRegion": "NA",
+      "postalCode": "80144",
+      "addressCountry": "IT",
+      "phone": ["339 464 6639", "081 341 4878"],
+      "hours": "lun. – ven. 9:30 – 13:00 / 14:00 – 19:00",
+      "coordinates": { "latitude": 40.9044, "longitude": 14.2497 }
+    },
+    {
+      "city": "Salerno",
+      "pin": "SA",
+      "isPrimary": false,
+      "address": "Via Santa Margherita, 36/H — Salerno (SA)",
+      "streetAddress": "Via Santa Margherita, 36/H",
+      "addressLocality": "Salerno",
+      "addressRegion": "SA",
+      "postalCode": "84121",
+      "addressCountry": "IT",
+      "phone": ["392 664 5745"],
+      "hours": "lun. – mer. e ven. 10:00 – 13:00 / 14:30 – 19:00 — giov./sab./dom. chiusi",
+      "coordinates": { "latitude": 40.6824, "longitude": 14.7681 }
+    }
+  ],
+  "staff": [
+    { "name": "Dr.ssa Azzurra Di Cecilia", "role": "Odontoiatra · Ortodontista", "img": "/img/Dr.ssa-Azzurra-Di-Cecilia.jpg", "lead": true },
+    { "name": "Dr. Maurizio Nocera", "role": "Implantologia · Protesi", "img": "/img/maurizio-nocera-1.webp", "lead": false },
+    { "name": "Dr.ssa Felicia De Jesus", "role": "Pedodonzia", "img": "/img/Dr.ssa-Felicia-De-Jesus.jpg", "lead": false },
+    { "name": "Dr. Felice Di Cecilia", "role": "Igienista", "img": "/img/felice-di-cecilia-1.webp", "lead": false },
+    { "name": "Dr. Francesco Spera", "role": "Conservativa", "img": "/img/biodent-francesco-spera.webp", "lead": false },
+    { "name": "Dr. Roberto Stradi", "role": "Ortodonzia", "img": "/img/roberto-stradi-ortodonzia.png", "lead": false },
+    { "name": "Dr.ssa R.B. Canciello", "role": "Igienista · Pediatrica", "img": "/img/Dr-R.B-Canciello-Igienista-dentale.jpg", "lead": false },
+    { "name": "Dr.ssa Sara Castaldi", "role": "Ortodonzia", "img": "/img/Dr-Sara-Castaldi-Ortodonzia.jpg", "lead": false },
+    { "name": "Dr.ssa Maddalena del Prete", "role": "Ortodonzia", "img": "/img/Maddalena-del-prete-Ortodonzia.jpg", "lead": false },
+    { "name": "Dr. Enrico Formato", "role": "Endodonzia", "img": "/img/Dr.-Enrico-Formato.jpg", "lead": false },
+    { "name": "Dr.ssa Maria Luisa Di Cecilia", "role": "Medicina Estetica · Senologia", "img": "/img/Dr.ssa-Maria-Luisa-Di-Cicilia.jpg", "lead": false },
+    { "name": "Dr. Gennaro de Marco", "role": "Chirurgia orale", "img": "/img/Dr-Gennaro-de-Marco.jpg", "lead": false },
+    { "name": "Dr. Antonio Fusco", "role": "Chirurgia orale", "img": "/img/Dr-Antonio-Fusco.jpg", "lead": false },
+    { "name": "Angela Capobianco", "role": "ASO", "img": "/img/Angela-Capobianco.png", "lead": false },
+    { "name": "Veronica Pinto", "role": "ASO", "img": "/img/Veronica-Pinto.png", "lead": false },
+    { "name": "Romina Spagnuolo", "role": "ASO", "img": "/img/Romina-Spagnuolo.png", "lead": false },
+    { "name": "Serena Cappuccio", "role": "ASO", "img": "/img/Serena-Cappuccio-Aso.jpg", "lead": false },
+    { "name": "Alessia Caporale", "role": "Segreteria", "img": "/img/Alessia-Caporale.png", "lead": false },
+    { "name": "Francesca Iadicicco", "role": "Segreteria", "img": "/img/Francesco-Iadicicco.png", "lead": false }
+  ],
+  "services": [
+    {
+      "slug": "odontoiatria",
+      "eyebrow": "01",
+      "title": "Odontoiatria Generale",
+      "desc": "Per la cura della salute dentale di Genitori e Figli.",
+      "img": "/img/biodent-home-17.webp"
+    },
+    {
+      "slug": "odontoiatria-pediatrica",
+      "eyebrow": "02",
+      "title": "Odontoiatria Pediatrica",
+      "desc": "Curiamo i denti dei bambini con tecniche avanzate e un approccio rassicurante.",
+      "img": "/img/biodent-home-5.webp",
+      "kids": true
+    },
+    {
+      "slug": "ortodonzia",
+      "eyebrow": "03",
+      "title": "Specialisti in Ortodonzia",
+      "desc": "Dai trattamenti intercettivi ai più innovativi allineatori trasparenti.",
+      "img": "/img/biodent-home-23.webp"
+    },
+    {
+      "slug": "medicina-estetica",
+      "eyebrow": "04",
+      "title": "Medicina Estetica",
+      "desc": "Filler labbra e trattamenti anti-età per un viso luminoso e giovane.",
+      "img": "/img/biodent-home-24.webp"
+    }
+  ],
+  "treatments": {
+    "odontoiatriaPediatrica": [
+      { "n": "01", "t": "Kids Cario Test · Orto Test", "d": "Test diagnostici innovativi per individuare il rischio di carie e i problemi ortodontici in fase precoce." },
+      { "n": "02", "t": "Ozonoterapia", "d": "Trattiamo le carie senza trapano: l'ozono elimina i batteri lasciando intatta la struttura del dente." },
+      { "n": "03", "t": "Laser a diodo", "d": "Carie e tessuti molli (gengivectomia, frenulotomia) senza anestesia locale, con guarigione accelerata." },
+      { "n": "04", "t": "Sigillatura dei molari", "d": "Una resina speciale crea una barriera che impedisce ai batteri di annidarsi nelle scanalature." },
+      { "n": "05", "t": "Fluoroprofilassi", "d": "Applicazione di gel al fluoro per rinforzare lo smalto, già sui denti da latte." },
+      { "n": "06", "t": "Chirurgia pediatrica", "d": "Frenulectomie linguali/labiali, mesiodens, estrazioni preventive ortodontiche e germectomia degli ottavi." }
+    ],
+    "ortodonzia": [
+      { "n": "01", "t": "Ortodonzia intercettiva", "d": "Correzione precoce delle anomalie dentali e scheletriche nei bambini tra i 5 e gli 11 anni. Espansori palatali, mantenitori di spazio e dispositivi funzionali." },
+      { "n": "02", "t": "Allineatori trasparenti", "d": "Mascherine su misura, rimovibili e impercettibili. La Dr.ssa Di Cecilia è provider Invisalign certificata. Pianificazione digitale con scanner 3D." },
+      { "n": "03", "t": "Apparecchio fisso", "d": "Brackets metallici o estetici con fili ortodontici: la soluzione tradizionale e consolidata, efficace anche nei casi complessi. Opzioni estetiche disponibili." },
+      { "n": "04", "t": "Ortodonzia adulta", "d": "Trattamenti su misura per adolescenti e adulti, con scelta tra apparecchio fisso e allineatori in base al caso clinico e allo stile di vita." },
+      { "n": "05", "t": "Scanner intraorale 3D", "d": "Impronte digitali rapide e confortevoli senza materiali tradizionali. Anteprima del risultato finale prima di iniziare il trattamento." },
+      { "n": "06", "t": "Retainer e mantenimento", "d": "Dispositivi di contenzione al termine del trattamento per preservare nel tempo il risultato ottenuto." }
+    ],
+    "odontoiatria": [
+      { "n": "01", "t": "Implantologia", "d": "Impianti in titanio con tecnica mini-invasiva. Pianificazione con TAC Cone Beam 3D e software di chirurgia guidata. Toronto Bridge per riabilitazione di intere arcate." },
+      { "n": "02", "t": "Chirurgia orale", "d": "Rimozione denti del giudizio, disinclusione canini, cisti, apicectomie, frenulectomie. Laser odontoiatrico e piezo surgery per interventi più delicati." },
+      { "n": "03", "t": "Parodontologia", "d": "Chirurgia mucogengivale per recessioni gengivali, chirurgia resettiva e rigenerativa. Terapia con laser a diodo per le malattie gengivali." },
+      { "n": "04", "t": "Conservativa ed endodonzia", "d": "Otturazioni in composito per piccole carie, intarsi per cavità estese. Devitalizzazione con strumenti rotanti di ultima generazione." },
+      { "n": "05", "t": "Protesi fissa e mobile", "d": "Corone in ceramica integrale e zirconio, Toronto Bridge su 4/6 impianti per arcate complete. Protesi rimovibili facilmente pulibili." },
+      { "n": "06", "t": "Faccette dentali", "d": "Sottili lamine applicate senza limatura del dente naturale. Denti bianchi, proporzionati e simmetrici. Realizzate in 3 sedute con anteprima digitale." },
+      { "n": "07", "t": "Sbiancamento professionale", "d": "Sbiancamento Click dopo igiene, sbiancamento LED con gel attivato da luce, sbiancamento domiciliare con mascherine personalizzate notturne." },
+      { "n": "08", "t": "Igiene GBT", "d": "Tecnica Guided Biofilm Therapy con air polisher. Rilevatore di placca per pulizia mirata sopra e sotto la gengiva. Sedute programmate per la salute a lungo termine." },
+      { "n": "09", "t": "Gnatologia", "d": "Diagnosi e trattamento dei disturbi dell'articolazione temporo-mandibolare (ATM) con risonanza magnetica e bite personalizzati. Collaborazione con fisioterapisti e osteopati." },
+      { "n": "10", "t": "Pazienti con bisogni speciali", "d": "Cure odontoiatriche dedicate con possibilità di interventi in sala operatoria con anestesia generale per disabilità cognitive/motorie e odontofobia." }
+    ],
+    "medicinaEstetica": [
+      { "n": "01", "t": "Filler labbra", "d": "Volume, definizione e idratazione del contorno labiale con soluzioni specifiche. Risultati immediati e duraturi con aspetto naturale e proporzionato al viso." },
+      { "n": "02", "t": "Rughe dinamiche e d'espressione", "d": "Tecniche avanzate per rilassare i muscoli responsabili delle linee sottili. Effetto distensivo senza alterare l'espressività naturale del viso." },
+      { "n": "03", "t": "Biorivitalizzazione", "d": "Trattamento innovativo che idrata e rivitalizza la pelle, stimolando la produzione naturale di collagene ed elastina. Migliora elasticità e tono, attenua i segni dell'invecchiamento." }
+    ]
+  },
+  "technologies": [
+    { "n": "T.01", "t": "Sedazione cosciente inalatoria", "d": "Una miscela di protossido di azoto e ossigeno per affrontare i trattamenti con serenità. Adatta ad adulti e bambini.", "img": "/img/ortodonzia-6.webp" },
+    { "n": "T.02", "t": "Laser odontoiatrico a diodo", "d": "Trattamenti minimamente invasivi sui tessuti molli e sulle carie, senza trapano, con guarigione accelerata.", "img": "/img/tecnologie-2.webp" },
+    { "n": "T.03", "t": "Ozonoterapia", "d": "Le proprietà antibatteriche dell'ozono eliminano i batteri della carie senza trapano. Indicata per i pazienti pediatrici.", "img": "/img/tecnologie-3.webp" },
+    { "n": "T.04", "t": "Scanner intraorale", "d": "Impronte digitali 3D rapide e confortevoli. Eliminiamo i tradizionali materiali da impronta, migliorando la precisione.", "img": "/img/tecnologie-4.webp" },
+    { "n": "T.05", "t": "Chirurgia guidata", "d": "Pianificazione digitale dell'intervento per il posizionamento preciso degli impianti. Tempi di recupero ridotti.", "img": "/img/tecnologie-5.webp" },
+    { "n": "T.06", "t": "TC Cone Beam 3D", "d": "Immagini tridimensionali ad alta risoluzione delle strutture orali e delle ossa mascellari, direttamente in sede.", "img": "/img/tecnologie-6.webp" },
+    { "n": "T.07", "t": "Ortopantomografia digitale", "d": "Una panoramica completa delle arcate dentarie e delle ossa mascellari per una diagnosi accurata.", "img": "/img/tecnologie-7.webp" },
+    { "n": "T.08", "t": "Sbiancamento LED professionale", "d": "Lampada con luce a LED e gel sbiancanti avanzati: un sorriso più bianco in una sola seduta, con risultati duraturi.", "img": "/img/tecnologie-8.webp" }
+  ],
+  "tellShowDo": [
+    { "n": "01", "t": "Tell — Racconta", "d": "Spieghiamo al bambino cosa faremo, utilizzando un linguaggio semplice e adatto alla sua età." },
+    { "n": "02", "t": "Show — Mostra", "d": "Mostriamo gli strumenti in modo non minaccioso, facendoglieli toccare e vedere in azione." },
+    { "n": "03", "t": "Do — Fai", "d": "Procediamo con il trattamento, mantenendo il contatto visivo e rassicurandolo durante tutta la procedura." }
+  ],
+  "values": [
+    { "n": "V.01", "t": "Empatia", "d": "Mettiamo le persone al centro: ascoltiamo paure, dubbi e desideri, soprattutto quelli dei più piccoli." },
+    { "n": "V.02", "t": "Competenza", "d": "Un team multidisciplinare con specializzazioni in pedodonzia, ortodonzia, implantologia e medicina estetica." },
+    { "n": "V.03", "t": "Innovazione", "d": "Sedazione cosciente, scanner intraorale, laser a diodo, ozonoterapia, TC Cone Beam 3D e chirurgia guidata." },
+    { "n": "V.04", "t": "Famiglia", "d": "Da oltre 40 anni curiamo intere famiglie, con un approccio che unisce tradizione e tecnologia." }
+  ],
+  "stats": [
+    { "n": "40+", "lbl": "Anni di attività", "p": "Una tradizione familiare di cura dentale dal 1985." },
+    { "n": "3", "lbl": "Sedi", "p": "Sturno, Salerno e Napoli — sempre vicini alle famiglie." },
+    { "n": "1°", "lbl": "Network in Italia", "p": "Partner del Dentista Dei Bambini." },
+    { "n": "8", "lbl": "Tecnologie avanzate", "p": "Dalla TC Cone Beam allo scanner intraorale." }
+  ],
+  "reviews": [
+    { "q": "Sono andata con i miei due bimbi: l'ambiente è colorato, la dottoressa Azzurra ha una pazienza infinita. Mia figlia ora chiede lei di andare dal dentista.", "name": "Maria L.", "meta": "Genitore · Sturno", "initial": "M" },
+    { "q": "Studio moderno, attrezzato con tecnologie all'avanguardia. Lo scanner intraorale ha reso tutto molto più rapido. Personale professionale e cortese.", "name": "Antonio R.", "meta": "Paziente · Napoli", "initial": "A" },
+    { "q": "Mio figlio ha bisogni speciali ed era impensabile portarlo dal dentista. Qui hanno trovato il modo giusto, con sedazione e tantissima dolcezza.", "name": "Giovanna P.", "meta": "Genitore · Salerno", "initial": "G" }
+  ],
+  "faqs": [
+    { "q": "A che età portare un bambino dal dentista per la prima volta?", "a": "Consigliamo la prima visita entro il primo anno di età o all'eruzione del primo dentino, e poi controlli regolari ogni 6 mesi. È un momento di scoperta, non solo un controllo: usiamo il metodo Tell-Show-Do per aiutare il bambino a sentirsi a proprio agio." },
+    { "q": "Cos'è la sedazione cosciente inalatoria?", "a": "È una miscela di protossido di azoto e ossigeno che il bambino respira tramite una mascherina colorata. Induce una piacevole sensazione di rilassamento, il piccolo resta sveglio e collaborativo. È sicura, non invasiva e particolarmente indicata per bambini ansiosi o trattamenti più lunghi." },
+    { "q": "Trattate bambini con bisogni speciali?", "a": "Sì. La nostra équipe è formata per trattare pazienti con disabilità cognitive o motorie, disturbi dello spettro autistico e odontofobia grave. Quando serve, ricorriamo alla sedazione inalatoria o, se necessario, a interventi in anestesia generale (fuori sede)." },
+    { "q": "Cosa significa essere partner del 'Dentista dei Bambini'?", "a": "Il network 'Dentista dei Bambini' è la rete nazionale che riunisce solo gli studi dentistici che eccellono nelle cure pediatriche per approccio e protocolli. Per voi genitori è una doppia garanzia sul sorriso dei vostri figli." },
+    { "q": "Si possono curare le carie senza trapano?", "a": "In molti casi sì, grazie all'ozonoterapia e al laser a diodo. L'ozono elimina i batteri responsabili della carie lasciando intatta la struttura del dente; il laser tratta carie e tessuti molli con minimo disagio, accelerando la guarigione." },
+    { "q": "Come si pianifica un trattamento ortodontico?", "a": "Partiamo dall'Orto Test e da uno studio digitale dei modelli. Per i bambini esistono percorsi di ortodonzia intercettiva che prevengono problemi futuri; per adolescenti e adulti scegliamo tra apparecchi fissi e allineatori trasparenti, in base al caso." }
+  ],
+  "marquee": [
+    "Pedodonzia",
+    "Ortodonzia invisibile",
+    "Implantologia",
+    "Sedazione cosciente",
+    "Ozonoterapia",
+    "Scanner 3D",
+    "Tell · Show · Do",
+    "Medicina estetica"
+  ],
+  "navigation": [
+    { "path": "/", "label": "Home" },
+    { "path": "/chi-siamo", "label": "Chi siamo" },
+    {
+      "label": "Terapie",
+      "children": [
+        { "path": "/odontoiatria-pediatrica", "label": "Odontoiatria Pediatrica", "meta": "Per i bambini · Sedazione cosciente" },
+        { "path": "/ortodonzia", "label": "Ortodonzia", "meta": "Intercettiva, fissa, allineatori" },
+        { "path": "/odontoiatria", "label": "Odontoiatria", "meta": "Implantologia, conservativa, protesi" }
+      ]
+    },
+    { "path": "/medicina-estetica", "label": "Medicina estetica" },
+    { "path": "/tecnologie", "label": "Tecnologie" },
+    { "path": "/contatti", "label": "Contatti" }
+  ],
+  "media": {
+    "videoHome": "/img/Biodent-Video-Home.mp4",
+    "mascot": "/img/luigino-full.png",
+    "studioPhotos": [
+      "/img/biodent-home-8.webp",
+      "/img/biodent-home-9.webp",
+      "/img/biodent-home-10.webp"
+    ]
+  }
+}

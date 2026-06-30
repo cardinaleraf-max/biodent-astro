@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHead from '../components/PageHead.astro';
+import CategoriaTrattamenti from '../components/CategoriaTrattamenti.astro';
+import Locations from '../components/Locations.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+const title = 'Ortodonzia e Allineatori Trasparenti — BioDent';
+const description =
+  'Ortodonzia intercettiva, fissa e allineatori trasparenti a Sturno, Salerno e Napoli. Sorriso dritto a ogni età con i nostri specialisti.';
+---
+
+<BaseLayout title={title} description={description} canonical="/ortodonzia" image="/img/biodent-home-23.webp">
+  <main class="page-enter">
+    <PageHead
+      crumbs={['Home', 'Terapie', 'Ortodonzia']}
+      kicker="Specialisti in Ortodonzia"
+      title="<em>Ortodonzia</em> a Sturno, Salerno e Napoli."
+      lead="Al Centro Odontoiatrico Biodent della Dr.ssa Azzurra Di Cecilia, eseguiamo trattamenti ortodontici su misura per ogni fase di crescita, aiutando bambini, adolescenti e adulti ad ottenere denti dritti e un sorriso sano e armonioso."
+    />
+
+    <!-- Introduzione di categoria (copy esistente) -->
+    <section class="section-tight">
+      <div class="container-wide">
+        <div class="split">
+          <div class="split-text">
+            <span class="eyebrow">Prevenzione precoce per un sorriso in crescita</span>
+            <h2>Intervenire <em style="font-style: italic; color: var(--orange);">presto</em>,<br />per non doverlo<br />fare dopo.</h2>
+            <p>L'ortodonzia intercettiva si occupa della correzione precoce delle anomalie dentali e scheletriche nei bambini. Raccomandiamo di considerare l'ortodonzia intercettiva per i bambini tra i 5 e gli 11 anni, con una prima visita intorno ai 6 anni — e interventi precoci già a 4–5 anni se necessario.</p>
+            <p>Per adolescenti e adulti impieghiamo apparecchi fissi o allineatori trasparenti, che garantiscono discrezione e comfort, per una terapia serena e un sorriso perfetto.</p>
+          </div>
+          <div class="split-media">
+            <img src="/img/biodent-home-25.webp" alt="Allineatori trasparenti Invisalign — BioDent provider certificato" />
+            <span class="badge">Biodent — Provider Invisalign</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trattamenti della categoria (auto-elenco filtrato) -->
+    <section class="section" style="background: var(--bg-alt);">
+      <div class="container-wide">
+        <div class="sec-head">
+          <div class="left">
+            <span class="eyebrow">I nostri trattamenti</span>
+            <h2>Per ogni occlusione,<br />la sua terapia.</h2>
+          </div>
+          <p>Un percorso ortodontico completo dalla prima visita al fine terapia, con tecnologie d'avanguardia e specialisti dedicati.</p>
+        </div>
+        <CategoriaTrattamenti categoria="ortodonzia" />
+      </div>
+    </section>
+
+    <!-- IL PERCORSO CON GLI ALLINEATORI -->
+    <section class="section">
+      <div class="container-wide">
+        <div class="sec-head">
+          <div class="left">
+            <span class="eyebrow">Allineatori trasparenti</span>
+            <h2>Un sorriso dritto,<br />in modo <em style="font-style: italic; color: var(--orange);">invisibile</em>.</h2>
+          </div>
+          <p>Mascherine su misura, removibili e quasi invisibili, per raddrizzare i denti continuando a vivere e mangiare normalmente. Da BioDent, provider Invisalign, il percorso è interamente digitale.</p>
+        </div>
+        <div class="tsd">
+          <div class="tsd-step">
+            <span class="big-num">01</span>
+            <h4>Scansione digitale</h4>
+            <p>Tutto parte da una scansione 3D della bocca, veloce e senza paste né impronte tradizionali, più precisa e confortevole.</p>
+          </div>
+          <div class="tsd-step">
+            <span class="big-num">02</span>
+            <h4>Pianificazione e anteprima</h4>
+            <p>Sul modello digitale l'ortodontista progetta l'intero trattamento e, in molti casi, ti mostra in anteprima il sorriso finale prima ancora di iniziare.</p>
+          </div>
+          <div class="tsd-step">
+            <span class="big-num">03</span>
+            <h4>Allineatori e contenzione</h4>
+            <p>Indossi gli allineatori su misura in sequenza, cambiandoli periodicamente, fino alla contenzione finale che fissa il risultato nel tempo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Locations tight />
+    <ContactForm />
+  </main>
+</BaseLayout>

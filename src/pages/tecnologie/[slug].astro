@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Locations from '../../components/Locations.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const tecnologie = await getCollection('tecnologie');
+  return tecnologie.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+---
+
+<BaseLayout
+  title={`${d.title} — Tecnologie BioDent`}
+  description={d.metaDescription}
+  canonical={`/tecnologie/${d.slug}`}
+  image={d.immagine}
+>
+  <main class="page-enter">
+    <section class="page-head">
+      <div class="container-wide">
+        <div class="crumbs"><span>Home</span><span>Tecnologie</span><span>{d.title}</span></div>
+        <div class="page-head-grid">
+          <div>
+            <span class="eyebrow" style="margin-bottom: 16px; display: inline-flex;">Tecnologie</span>
+            <h1>{d.title}</h1>
+          </div>
+          <div>
+            <p>{d.descrizioneBreve}</p>
+            <div style="margin-top: 28px; display: flex; gap: 12px;">
+              <a href="/contatti" class="btn">Prenota una visita
+                <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="18" x2="18" y2="6"/><polyline points="9,6 18,6 18,15"/></svg>
+              </a>
+              <a href="/tecnologie" class="btn btn-outline">Tutte le tecnologie</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container-wide">
+        <div class="split">
+          <div class="split-text article-body">
+            <Content />
+          </div>
+          <div class="split-media">
+            <img src={d.immagine} alt={d.title} />
+            <span class="badge">Tecnologia</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Locations tight />
+    <ContactForm />
+  </main>
+</BaseLayout>

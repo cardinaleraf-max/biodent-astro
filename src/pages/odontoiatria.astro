@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHead from '../components/PageHead.astro';
+import CategoriaTrattamenti from '../components/CategoriaTrattamenti.astro';
+import Locations from '../components/Locations.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+const title = 'Odontoiatria e Implantologia — BioDent';
+const description =
+  'Cure dentali complete per adulti: implantologia, faccette dentali, otturazioni e igiene orale. Tre sedi in Campania.';
+---
+
+<BaseLayout title={title} description={description} canonical="/odontoiatria" image="/img/biodent-home-17.webp">
+  <main class="page-enter">
+    <PageHead
+      crumbs={['Home', 'Terapie', 'Odontoiatria']}
+      kicker="Odontoiatria dell'Adulto"
+      title="<em>Odontoiatria</em> a Sturno, Salerno e Napoli."
+      lead="Il Centro Odontoiatrico Biodent della Dr.ssa Azzurra Di Cecilia nasce per offrire un'esperienza positiva di cure dentali, aiutando pazienti di tutte le età a superare ansie e timori con un approccio orientato al comfort."
+    />
+
+    <!-- Introduzione di categoria (copy esistente) -->
+    <section class="section-tight">
+      <div class="container-wide">
+        <div class="split">
+          <div class="split-text">
+            <span class="eyebrow">Implantologia e chirurgia</span>
+            <h2>Ricostruire la <em style="font-style: italic; color: var(--orange);">funzione</em>,<br />restituire il sorriso.</h2>
+            <p>Sostituiamo i denti mancanti con impianti dentali duraturi. Utilizziamo tecniche di implantologia avanzata con scansioni digitali, TAC Cone Beam e software 3D per pianificare con precisione gli impianti, garantendo interventi mirati e mini-invasivi.</p>
+            <p>Per la chirurgia orale utilizziamo laser odontoiatrico e manipolo per piezo surgery per interventi meno invasivi e più delicati.</p>
+          </div>
+          <div class="split-media">
+            <img src="/img/odontoiatria-12.webp" alt="Implantologia e chirurgia orale avanzata — Studio BioDent" />
+            <span class="badge">Implantologia</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trattamenti della categoria (auto-elenco filtrato) -->
+    <section class="section" style="background: var(--bg-alt);">
+      <div class="container-wide">
+        <div class="sec-head">
+          <div class="left">
+            <span class="eyebrow">I nostri trattamenti</span>
+            <h2>Una cura completa<br />per ogni esigenza.</h2>
+          </div>
+          <p>Dall'implantologia alla parodontologia, dall'estetica dentale alla gnatologia: tutto in un unico centro coordinato dalla Dr.ssa Azzurra Di Cecilia.</p>
+        </div>
+        <CategoriaTrattamenti categoria="odontoiatria" />
+      </div>
+    </section>
+
+    <!-- IGIENE GBT E PREVENZIONE -->
+    <section class="section">
+      <div class="container-wide">
+        <div class="split">
+          <div class="split-media">
+            <img src="/img/biodent-home-16.webp" alt="Igiene orale professionale e prevenzione — Studio BioDent" />
+            <span class="badge">Igiene GBT</span>
+          </div>
+          <div class="split-text">
+            <span class="eyebrow">Prevenzione</span>
+            <h2>La cura migliore<br />è quella che <em style="font-style: italic; color: var(--orange);">previene</em>.</h2>
+            <p>L'igiene professionale con metodo GBT (Guided Biofilm Therapy) rimuove placca e pigmentazioni in modo delicato e mirato, seduta dopo seduta. La sua dolcezza la rende adatta anche a bambini e adolescenti, a chi porta apparecchi ortodontici e ai portatori di impianti, perché pulisce in sicurezza anche le superfici implantari.</p>
+            <p>Accanto alla prevenzione, completiamo il sorriso con l'estetica dentale — faccette e sbiancamento professionale — e con protesi fisse e mobili per restituire funzione e armonia anche dove mancano più denti.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Locations tight />
+    <ContactForm />
+  </main>
+</BaseLayout>
