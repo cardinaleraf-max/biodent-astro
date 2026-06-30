@@ -1,0 +1,95 @@
+---
+import BaseLayoutV2 from '../../layouts/BaseLayoutV2.astro';
+import PageHeadV2 from '../../components/v2/PageHeadV2.astro';
+import CategoriaTrattamentiV2 from '../../components/v2/CategoriaTrattamentiV2.astro';
+import LocationsV2 from '../../components/v2/LocationsV2.astro';
+import ContactFormV2 from '../../components/v2/ContactFormV2.astro';
+import content from '../../data/biodent-content.json';
+
+const { tellShowDo } = content;
+
+const title = 'Dentista Pediatrico a Sturno, Salerno, Napoli — BioDent';
+const description =
+  'BioDent è partner del network Dentista dei Bambini. Odontoiatria infantile con sedazione cosciente, ozonoterapia e metodo Tell·Show·Do.';
+---
+
+<BaseLayoutV2 title={title} description={description} canonical="/odontoiatria-pediatrica" image="/img/biodent-home-5.webp">
+  <main>
+    <PageHeadV2
+      crumbs={['Home', 'Terapie', 'Odontoiatria Pediatrica']}
+      kicker="Per i più piccoli — età 0–14"
+      title="Odontoiatria <em>pediatrica</em> a Sturno, Salerno e Napoli."
+      lead="Al Centro Odontoiatrico BioDent siamo specializzati nell'odontoiatria infantile. Sappiamo quanto sia importante creare un'esperienza positiva e rassicurante dal dentista per i più piccoli. Partner del network nazionale Dentista dei Bambini."
+    />
+
+    <!-- La prima visita -->
+    <section class="section">
+      <div class="wrap split">
+        <div class="split-text" data-reveal>
+          <span class="eyebrow">La prima visita</span>
+          <h2>La prima visita è una <em>scoperta</em>, non un controllo.</h2>
+          <p>Al Centro Biodent accogliamo i piccoli pazienti con un sorriso e li guidiamo in un percorso su misura, fatto di parole rassicuranti e gesti attenti. La Dr.ssa Azzurra Di Cecilia utilizza tecniche psicologiche come il <em style="font-style:italic">Tell-Show-Do</em> per spiegare al bambino ogni passaggio della visita, aiutandolo a sentirsi a proprio agio e sicuro.</p>
+        </div>
+        <div class="split-media" data-reveal data-reveal-delay="1">
+          <img src="/img/pedodonzia-2.webp" alt="Bambino sorridente durante visita dentistica pediatrica BioDent" loading="lazy" />
+          <span class="badge">Dentista dei bambini</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trattamenti della categoria -->
+    <section class="section soft">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <div>
+            <span class="eyebrow">Cosa offriamo</span>
+            <h2>I trattamenti pediatrici di BioDent.</h2>
+          </div>
+          <p class="lede">Una gamma completa di terapie pensate per bambini, dalla prevenzione alla chirurgia, in un unico centro coordinato.</p>
+        </div>
+        <CategoriaTrattamentiV2 categoria="pediatrica" />
+      </div>
+    </section>
+
+    <!-- IL METODO TELL-SHOW-DO -->
+    <section class="section">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <div>
+            <span class="eyebrow">Il nostro metodo</span>
+            <h2>Tell · Show · Do: niente <em style="color:var(--acc-deep)">sorprese</em>.</h2>
+          </div>
+          <p class="lede">Un approccio psicologico delicato che trasforma la paura in curiosità: spieghiamo, mostriamo e solo dopo interveniamo, sempre con il bambino al centro.</p>
+        </div>
+        <div class="process" data-reveal>
+          {tellShowDo.map((s) => (
+            <div class="step">
+              <div class="sn">{s.n}</div>
+              <h3>{s.t}</h3>
+              <p>{s.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- UNO STUDIO A MISURA DI BAMBINO -->
+    <section class="section soft">
+      <div class="wrap split">
+        <div class="split-media" data-reveal>
+          <img src="/img/pedodonzia-4.webp" alt="Area pediatrica con postazioni colorate dello Studio BioDent" loading="lazy" />
+          <span class="badge">Area pediatrica</span>
+        </div>
+        <div class="split-text" data-reveal data-reveal-delay="1">
+          <span class="eyebrow">Spazi</span>
+          <h2>Uno studio a misura di <em>bambino</em>… e di genitore.</h2>
+          <p>La nostra specializzazione nell'odontoiatria infantile è arricchita da uno spazio esclusivo: una grande area dedicata ai bambini, con postazioni colorate, una sala d'attesa accogliente per tutte le età e un parco giochi esterno attrezzato.</p>
+          <p>I piccoli pazienti possono rilassarsi e distrarsi, trasformando la visita dentistica in un'esperienza serena. E quando serve, la sedazione cosciente inalatoria — una miscela di protossido di azoto e ossigeno — aiuta ad affrontare i trattamenti con tranquillità, restando svegli e collaborativi.</p>
+        </div>
+      </div>
+    </section>
+
+    <LocationsV2 tight />
+    <ContactFormV2 />
+  </main>
+</BaseLayoutV2>

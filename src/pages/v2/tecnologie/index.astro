@@ -1,0 +1,60 @@
+---
+import BaseLayoutV2 from '../../../layouts/BaseLayoutV2.astro';
+import LocationsV2 from '../../../components/v2/LocationsV2.astro';
+import ContactFormV2 from '../../../components/v2/ContactFormV2.astro';
+import { getCollection } from 'astro:content';
+
+const tecnologie = (await getCollection('tecnologie')).sort(
+  (a, b) => (a.data.ordine ?? 0) - (b.data.ordine ?? 0)
+);
+
+const title = 'Tecnologie Dentali Avanzate — BioDent';
+const description =
+  'Scanner intraorale 3D, TC Cone Beam, laser a diodo, sedazione cosciente e chirurgia guidata. Tecnologie di punta nei nostri studi dentistici.';
+const tag = (o) => `T.${String(o).padStart(2, '0')}`;
+---
+
+<BaseLayoutV2 title={title} description={description} canonical="/tecnologie">
+  <main>
+    <section class="phead">
+      <div class="wrap">
+        <div class="crumbs"><span>Home</span><span>Tecnologie</span></div>
+        <div class="phead-grid">
+          <div data-reveal>
+            <span class="eyebrow">Strumenti per diagnosi precise e cure mirate</span>
+            <h1>Le <em>tecnologie</em> che cambiano l'esperienza dal dentista.</h1>
+          </div>
+          <div data-reveal data-reveal-delay="1">
+            <p class="lede">Al Centro Odontoiatrico BioDent forniamo trattamenti odontoiatrici all'avanguardia, avvalendoci delle tecnologie più avanzate per eseguire diagnosi più precise e pianificare cure ancora più mirate ed efficaci.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        {tecnologie.map((t, i) => (
+          <div
+            class:list={['split', { reverse: i % 2 === 1 }]}
+            data-reveal
+            style={`align-items:center;${i === 0 ? '' : 'padding-top:clamp(48px,6vw,72px);'}${i === tecnologie.length - 1 ? '' : 'padding-bottom:clamp(48px,6vw,72px);border-bottom:1px solid var(--line);'}`}
+          >
+            <div class="split-media">
+              <img src={t.data.immagine} alt={t.data.title} loading="lazy" />
+              <span class="badge">{tag(t.data.ordine)}</span>
+            </div>
+            <div class="split-text">
+              <span class="eyebrow">{tag(t.data.ordine)}</span>
+              <h2><a href={`/v2/tecnologie/${t.data.slug}`}>{t.data.title}</a></h2>
+              <p>{t.data.descrizioneBreve}</p>
+              <a href={`/v2/tecnologie/${t.data.slug}`} class="btn btn-ghost" style="margin-top:22px">Scopri <span class="ar">→</span></a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <LocationsV2 tight />
+    <ContactFormV2 />
+  </main>
+</BaseLayoutV2>

@@ -1,0 +1,97 @@
+---
+import BaseLayoutV2 from '../../../layouts/BaseLayoutV2.astro';
+import LocationsV2 from '../../../components/v2/LocationsV2.astro';
+import ContactFormV2 from '../../../components/v2/ContactFormV2.astro';
+import FaqAccordionV2 from '../../../components/v2/FaqAccordionV2.astro';
+import { getCollection, render } from 'astro:content';
+import { faqPageJsonLd, trattamentoJsonLd } from '../../../lib/jsonld';
+
+export async function getStaticPaths() {
+  const trattamenti = await getCollection('trattamenti');
+  return trattamenti.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+
+const catLabel = {
+  pediatrica: 'Odontoiatria Pediatrica',
+  ortodonzia: 'Ortodonzia',
+  odontoiatria: 'Odontoiatria',
+  estetica: 'Medicina Estetica',
+};
+
+const pageUrl = `https://centrobiodent.net/trattamenti/${d.slug}`;
+const faqItems = d.faq ?? [];
+const faqLd = faqPageJsonLd(faqItems, pageUrl);
+const procLd = trattamentoJsonLd({
+  title: d.title,
+  description: d.metaDescription,
+  url: pageUrl,
+  image: `https://centrobiodent.net${d.immagine}`,
+});
+---
+
+<BaseLayoutV2
+  title={`${d.title} — BioDent`}
+  description={d.metaDescription}
+  canonical={`/trattamenti/${d.slug}`}
+  image={d.immagine}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(procLd)} />
+  {faqLd && <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />}
+
+  <main>
+    <section class="phead">
+      <div class="wrap">
+        <div class="crumbs"><span>Home</span><span>Trattamenti</span><span>{catLabel[d.categoria]}</span></div>
+        <div class="phead-grid">
+          <div data-reveal>
+            <span class="eyebrow">{catLabel[d.categoria]}</span>
+            <h1>{d.title}</h1>
+          </div>
+          <div data-reveal data-reveal-delay="1">
+            <p class="lede">{d.descrizioneBreve}</p>
+            <div class="phead-cta">
+              <a href="/v2/contatti" class="btn btn-dark">Prenota una visita <span class="ar">→</span></a>
+              <a href="/v2/trattamenti" class="btn btn-ghost">Tutti i trattamenti</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap narrow">
+        <figure class="article-hero" data-reveal>
+          <img src={d.immagine} alt={d.title} />
+        </figure>
+        <article class="article" data-reveal>
+          <Content />
+        </article>
+      </div>
+    </section>
+
+    {faqItems.length > 0 && (
+      <section class="section soft">
+        <div class="wrap narrow">
+          <div class="sec-head" data-reveal>
+            <div>
+              <span class="eyebrow">FAQ</span>
+              <h2>Domande frequenti.</h2>
+            </div>
+            <p class="lede">Le risposte alle domande più comuni su questo trattamento. Per ogni dubbio, scrivici o prenota una visita.</p>
+          </div>
+          <FaqAccordionV2 items={faqItems} />
+        </div>
+      </section>
+    )}
+
+    <LocationsV2 tight />
+    <ContactFormV2 />
+  </main>
+</BaseLayoutV2>

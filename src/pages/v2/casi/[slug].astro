@@ -1,0 +1,58 @@
+---
+import BaseLayoutV2 from '../../../layouts/BaseLayoutV2.astro';
+import LocationsV2 from '../../../components/v2/LocationsV2.astro';
+import ContactFormV2 from '../../../components/v2/ContactFormV2.astro';
+import { getCollection, render } from 'astro:content';
+
+// Collection "casi" ancora vuota: nessun caso clinico generato per ora.
+export async function getStaticPaths() {
+  const casi = await getCollection('casi');
+  return casi.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+---
+
+<BaseLayoutV2
+  title={`${d.title} — Casi clinici BioDent`}
+  description={`${d.problema}`}
+  canonical={`/casi/${d.slug}`}
+  image={d.immagine}
+>
+  <main>
+    <section class="phead">
+      <div class="wrap">
+        <div class="crumbs"><span>Home</span><span>Casi</span><span>{d.title}</span></div>
+        <div class="phead-grid">
+          <div data-reveal>
+            <span class="eyebrow">Caso clinico</span>
+            <h1>{d.title}</h1>
+          </div>
+          <div data-reveal data-reveal-delay="1">
+            <p><strong>Paziente:</strong> {d.paziente.nome}{d.paziente.eta ? `, ${d.paziente.eta} anni` : ''}</p>
+            <p style="margin-top:8px"><strong>Problema:</strong> {d.problema}</p>
+            <p style="margin-top:8px"><strong>Soluzione:</strong> {d.soluzione}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap split">
+        <div class="split-text article" data-reveal><Content /></div>
+        <div class="split-media" data-reveal data-reveal-delay="1">
+          <img src={d.immagine} alt={d.title} loading="lazy" />
+          <span class="badge">Caso clinico</span>
+        </div>
+      </div>
+    </section>
+
+    <LocationsV2 tight />
+    <ContactFormV2 />
+  </main>
+</BaseLayoutV2>

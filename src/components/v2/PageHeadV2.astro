@@ -1,0 +1,34 @@
+---
+import content from '../../data/biodent-content.json';
+const { contacts } = content;
+
+interface Props {
+  crumbs: string[];
+  kicker: string;
+  /** Title may contain inline <em> / <br/> markup */
+  title: string;
+  lead?: string;
+  sub?: string;
+}
+const { crumbs, kicker, title, lead, sub } = Astro.props;
+---
+
+<section class="phead">
+  <div class="wrap">
+    <div class="crumbs">{crumbs.map((c) => <span>{c}</span>)}</div>
+    <div class="phead-grid">
+      <div data-reveal>
+        <span class="eyebrow">{kicker}</span>
+        <h1 set:html={title} />
+        {sub && <p class="sub">{sub}</p>}
+      </div>
+      <div data-reveal data-reveal-delay="1">
+        {lead && <p class="lede">{lead}</p>}
+        <div class="phead-cta">
+          <a href="/v2/contatti" class="btn btn-dark">Prenota una visita <span class="ar">→</span></a>
+          <a href={contacts.whatsappUrlPrefilled} target="_blank" rel="noopener noreferrer" class="btn btn-ghost">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

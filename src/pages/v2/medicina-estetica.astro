@@ -1,0 +1,71 @@
+---
+import BaseLayoutV2 from '../../layouts/BaseLayoutV2.astro';
+import PageHeadV2 from '../../components/v2/PageHeadV2.astro';
+import CategoriaTrattamentiV2 from '../../components/v2/CategoriaTrattamentiV2.astro';
+import LocationsV2 from '../../components/v2/LocationsV2.astro';
+import ContactFormV2 from '../../components/v2/ContactFormV2.astro';
+
+const title = 'Medicina Estetica Filler — BioDent';
+const description =
+  'Filler labbra, biorivitalizzazione e trattamenti antiage a Sturno, Salerno e Napoli. Valorizza la tua bellezza naturale con BioDent.';
+---
+
+<BaseLayoutV2 title={title} description={description} canonical="/medicina-estetica" image="/img/biodent-home-24.webp">
+  <main>
+    <PageHeadV2
+      crumbs={['Home', 'Medicina estetica']}
+      kicker="Medicina estetica e trattamenti anti-età"
+      title="Medicina <em>estetica</em> a Sturno, Salerno e Napoli."
+      lead="Da Biodent, la dottoressa unisce cure odontoiatriche e medicina estetica per trattamenti avanzati che esaltano la bellezza naturale. Filler, biorivitalizzazione e trattamenti anti-età per un viso fresco e armonioso."
+    />
+
+    <!-- Introduzione di categoria -->
+    <section class="section">
+      <div class="wrap split">
+        <div class="split-text" data-reveal>
+          <span class="eyebrow">Filler e contorni</span>
+          <h2>Linee armoniche, volumi <em>naturali</em>.</h2>
+          <p>I trattamenti di medicina estetica da Biodent sono pensati per esaltare la bellezza naturale del viso, mai per stravolgerla. La Dr.ssa Azzurra Di Cecilia lavora su filler labbra, contorni e biorivitalizzazione cutanea con un approccio sobrio e personalizzato.</p>
+          <p>Il filler labbra utilizza soluzioni specifiche per donare volume, migliorare la definizione e ripristinare l'idratazione, con risultati immediati e duraturi dall'aspetto naturale e proporzionato al viso.</p>
+        </div>
+        <div class="split-media" data-reveal data-reveal-delay="1">
+          <img src="/img/biodent-home-19.webp" alt="Trattamenti di medicina estetica filler labbra — BioDent" loading="lazy" />
+          <span class="badge">Medicina estetica</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trattamenti della categoria -->
+    <section class="section soft">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <div>
+            <span class="eyebrow">I nostri trattamenti</span>
+            <h2>Bellezza naturale, risultati armoniosi.</h2>
+          </div>
+          <p class="lede">Trattamenti mini-invasivi per valorizzare i lineamenti del viso, sempre con un approccio sobrio e personalizzato.</p>
+        </div>
+        <CategoriaTrattamentiV2 categoria="estetica" />
+      </div>
+    </section>
+
+    <!-- BIORIVITALIZZAZIONE E ANTI-ETÀ -->
+    <section class="section">
+      <div class="wrap split reverse">
+        <div class="split-media" data-reveal>
+          <img src="/img/biodent-home-24.webp" alt="Trattamenti di biorivitalizzazione e anti-età — BioDent" loading="lazy" />
+          <span class="badge">Anti-età</span>
+        </div>
+        <div class="split-text" data-reveal data-reveal-delay="1">
+          <span class="eyebrow">Biorivitalizzazione</span>
+          <h2>Pelle più <em>luminosa</em>, dall'interno.</h2>
+          <p>La biorivitalizzazione è un trattamento che idrata e rivitalizza la pelle dall'interno, stimolando la produzione naturale di collagene ed elastina. Migliora elasticità e tono e attenua progressivamente i segni dell'invecchiamento, per un viso fresco e riposato.</p>
+          <p>Per le linee sottili lavoriamo sulle rughe dinamiche e d'espressione con tecniche avanzate che rilassano i muscoli responsabili delle pieghe, con un effetto distensivo che non altera l'espressività naturale del viso. Un approccio sempre sobrio e proporzionato, firmato dalla Dr.ssa Azzurra Di Cecilia.</p>
+        </div>
+      </div>
+    </section>
+
+    <LocationsV2 tight />
+    <ContactFormV2 />
+  </main>
+</BaseLayoutV2>

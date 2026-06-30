@@ -1,17 +1,21 @@
 ---
 import content from '../../data/biodent-content.json';
+interface Props { tight?: boolean; }
+const { tight = false } = Astro.props;
 const { locations } = content;
 ---
 
 <section class="section" id="sedi">
   <div class="wrap">
-    <div class="sec-head" data-reveal>
-      <div>
-        <span class="eyebrow">Sedi</span>
-        <h2>Tre studi, la stessa cura.</h2>
+    {!tight && (
+      <div class="sec-head" data-reveal>
+        <div>
+          <span class="eyebrow">Sedi</span>
+          <h2>Scegli la sede più vicina a te.</h2>
+        </div>
+        <p class="lede">Tre studi pensati per accogliere famiglie, con tecnologie identiche e un team coordinato dalla Dr.ssa Azzurra Di Cecilia. Stessa cura, ovunque tu sia.</p>
       </div>
-      <p class="lede">Sturno, Salerno e Napoli: tecnologie identiche e un team coordinato dalla Dr.ssa Azzurra Di Cecilia. Scegli la sede più vicina a te.</p>
-    </div>
+    )}
     <div class="locs">
       {locations.map((loc, i) => (
         <article class="loc" data-reveal data-reveal-delay={String((i % 3) + 1)}>

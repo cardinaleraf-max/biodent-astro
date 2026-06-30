@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  categoria: 'pediatrica' | 'ortodonzia' | 'odontoiatria' | 'estetica';
+}
+const { categoria } = Astro.props;
+
+const items = (await getCollection('trattamenti'))
+  .filter((t) => t.data.categoria === categoria)
+  .sort((a, b) => a.data.ordine - b.data.ordine);
+---
+
+<div class="therapy-list" data-reveal>
+  {items.map((t) => (
+    <a class="therapy" href={`/v2/trattamenti/${t.data.slug}`}>
+      <span class="num">{String(t.data.ordine).padStart(2, '0')}</span>
+      <h4>{t.data.title}</h4>
+      <p>{t.data.descrizioneBreve}</p>
+    </a>
+  ))}
+</div>

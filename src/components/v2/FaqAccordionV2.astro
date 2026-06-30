@@ -1,0 +1,21 @@
+---
+import type { FaqItem } from '../../lib/jsonld';
+
+interface Props {
+  items: FaqItem[];
+  heading?: string;
+}
+const { items, heading } = Astro.props;
+---
+
+{items.length > 0 && (
+  <div class="faq">
+    {heading && <h3 class="faq-title">{heading}</h3>}
+    {items.map((f) => (
+      <details class="faq-item">
+        <summary><span>{f.q}</span><span class="sign"></span></summary>
+        <p class="answer">{f.a}</p>
+      </details>
+    ))}
+  </div>
+)}

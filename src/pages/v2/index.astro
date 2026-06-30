@@ -4,18 +4,18 @@ import LocationsV2 from '../../components/v2/LocationsV2.astro';
 import ContactFormV2 from '../../components/v2/ContactFormV2.astro';
 import content from '../../data/biodent-content.json';
 
-const { services, marquee, media, stats, technologies, reviews, tellShowDo, studio } = content;
+const { services, marquee, media, contacts } = content;
 
 const title = 'BioDent — Dentista a Sturno, Salerno e Napoli';
 const description =
   'Centro Odontoiatrico BioDent della Dr.ssa Azzurra Di Cecilia. Odontoiatria pediatrica, ortodonzia, implantologia. Sedi a Sturno, Salerno e Napoli.';
 
-// service card → matching section anchor on this page
-const svcAnchor = {
-  odontoiatria: '#odontoiatria',
-  'odontoiatria-pediatrica': '#pediatrica',
-  ortodonzia: '#ortodonzia',
-  'medicina-estetica': '#estetica',
+const slugUrl = (slug) => `/v2/trattamenti/${slug}`;
+const serviceSlugMap = {
+  odontoiatria: 'implantologia',
+  'odontoiatria-pediatrica': 'kids-cario-test-orto-test',
+  ortodonzia: 'ortodonzia-intercettiva',
+  'medicina-estetica': 'filler-labbra',
 };
 ---
 
@@ -28,17 +28,11 @@ const svcAnchor = {
       </video>
       <div class="hero-scrim"></div>
       <div class="wrap hero-inner">
-        <span class="eyebrow on-deep">Dal {studio.since} · {studio.yearsActive} anni di pratica clinica</span>
-        <h1>Dentisti di famiglia, <em>specialisti dei bambini</em>.</h1>
-        <p class="hero-sub">Centro Odontoiatrico della {studio.director}. Studi dentistici a Sturno, Salerno e Napoli.</p>
+        <span class="eyebrow on-deep">Dr.ssa Azzurra Di Cecilia</span>
+        <h1>Centro Odontoiatrico <em>Biodent</em></h1>
+        <p class="hero-sub">Studi Dentistici a Sturno, Salerno e Napoli.</p>
         <div class="hero-actions">
-          <a href="/v2/contatti" class="btn btn-acc btn-lg">Prenota una visita <span class="ar">→</span></a>
-          <a href="#terapie" class="btn btn-line-light btn-lg">Le nostre terapie</a>
-        </div>
-        <div class="hero-stats">
-          {stats.map((s) => (
-            <div class="hs"><div class="n">{s.n}</div><div class="l">{s.lbl}</div></div>
-          ))}
+          <a href={contacts.whatsappUrl} target="_blank" rel="noopener" class="btn btn-acc btn-lg">Scopri di più <span class="ar">→</span></a>
         </div>
       </div>
     </section>
@@ -52,7 +46,7 @@ const svcAnchor = {
     </div>
 
     <!-- SERVICES -->
-    <section class="section" id="terapie">
+    <section class="section">
       <div class="wrap">
         <div class="sec-head" data-reveal>
           <div>
@@ -63,13 +57,13 @@ const svcAnchor = {
         </div>
         <div class="svc-grid" data-reveal>
           {services.map((s) => (
-            <a class="svc" href={svcAnchor[s.slug]}>
+            <a class="svc" href={slugUrl(serviceSlugMap[s.slug])}>
               <span class="svc-num">{s.eyebrow}</span>
               <div class="svc-main">
                 <h3>{s.title}</h3>
                 <p>{s.desc}</p>
               </div>
-              <span class="svc-go">Scopri <span class="ar">→</span></span>
+              <span class="svc-go"><span class="ar">→</span></span>
               <div class="svc-thumb"><img src={s.img} alt={s.title} loading="lazy" /></div>
             </a>
           ))}
@@ -77,161 +71,111 @@ const svcAnchor = {
       </div>
     </section>
 
-    <!-- PEDIATRICA -->
-    <section class="section soft" id="pediatrica">
+    <!-- ODONTOIATRIA PEDIATRICA -->
+    <section class="section soft">
       <div class="wrap split">
         <div class="split-text" data-reveal>
           <span class="eyebrow">Odontoiatria infantile</span>
-          <h2>Curiamo i denti <em>e il benessere</em> dei tuoi figli.</h2>
+          <h2>Mamma e papà, da BioDent curiamo i denti <em>e il benessere</em> dei tuoi figli.</h2>
           <p class="sub">Dentisti per bambini a Sturno, Salerno e Napoli.</p>
-          <p>Il Centro Odontoiatrico BioDent della Dr.ssa Azzurra Di Cecilia è un punto di riferimento per l'odontoiatria infantile. Siamo partner di spicco del network nazionale <em>Dentista dei Bambini</em>, che riunisce solo gli studi che eccellono nelle cure pediatriche per approccio e protocolli.</p>
-          <a href="/v2/odontoiatria-pediatrica" class="btn btn-dark">Odontoiatria pediatrica <span class="ar">→</span></a>
+          <p>Il Centro Odontoiatrico BioDent della Dr.ssa Azzurra Di Cecilia è un punto di riferimento per l'odontoiatria infantile a Sturno, Salerno e Napoli. Siamo partner di spicco del network <em style="font-style:italic">Dentista Dei Bambini</em>, la rete nazionale che riunisce solo gli studi dentistici che eccellono nelle cure dentali pediatriche per approccio e protocolli.</p>
+          <a href="/v2/odontoiatria-pediatrica" class="btn btn-dark">Vai all'odontoiatria pediatrica <span class="ar">→</span></a>
         </div>
         <div class="split-media" data-reveal data-reveal-delay="1">
-          <img src={media.studioPhotos[0]} alt="Studio dentistico BioDent — odontoiatria pediatrica" loading="lazy" />
-          <span class="badge"><span class="k">Studio</span>Sturno · Salerno · Napoli</span>
+          <img src={media.studioPhotos[0]} alt="Studio dentistico BioDent — odontoiatria pediatrica Sturno Salerno Napoli" loading="lazy" />
+          <span class="badge">Studio Biodent</span>
         </div>
       </div>
     </section>
 
-    <!-- PARTNERSHIP -->
+    <!-- BIODENT + DENTISTA DEI BAMBINI -->
     <section class="section">
       <div class="wrap split reverse">
         <div class="split-media" data-reveal>
-          <img src={media.studioPhotos[1]} alt="Collaborazione BioDent e Dentista dei Bambini" loading="lazy" />
-          <span class="badge"><span class="k">Network nazionale</span>Dentista dei Bambini</span>
+          <img src={media.studioPhotos[1]} alt="Collaborazione BioDent e Dentista dei Bambini — network nazionale pedodonzia" loading="lazy" />
+          <span class="badge">Dentista dei Bambini</span>
         </div>
         <div class="split-text" data-reveal data-reveal-delay="1">
           <span class="eyebrow">La partnership</span>
-          <h2>BioDent + Il Dentista dei Bambini.</h2>
-          <p>Una doppia garanzia per i genitori: oltre alla nostra esperienza ventennale, siamo stati scelti come eccellenza nell'odontoiatria infantile. I nostri punti di forza:</p>
+          <h2>BioDent + Il Dentista Dei Bambini.</h2>
+          <p class="sub">Insieme per la salute dentale dei più piccoli.</p>
+          <p>La collaborazione tra BioDent e il <em style="font-style:italic">Dentista Dei Bambini</em> è nata per garantire ai genitori una doppia tranquillità riguardo al sorriso dei loro figli. Oltre alla nostra ventennale esperienza, siamo stati scelti come eccellenza nel campo dell'odontoiatria infantile. Ecco alcuni dei nostri punti di forza:</p>
           <ul class="deflist">
-            <li><strong>Tell · Show · Do</strong><span class="t">Spiegazione, dimostrazione ed esecuzione delicata per ridurre l'ansia nei bambini.</span></li>
-            <li><strong>Kids Cario · Orto Test</strong><span class="t">Valutiamo la salute orale in modo rapido e approfondito, anche con il test salivare.</span></li>
-            <li><strong>Ozonoterapia</strong><span class="t">Disinfettiamo le carie con l'ozono, riducendo gli interventi invasivi.</span></li>
-            <li><strong>Special needs</strong><span class="t">Protocolli testati e certificati, con sedazione, per bambini con bisogni speciali.</span></li>
+            <li><strong>Tell-Show-Do</strong><span class="t">Tramite spiegazione, dimostrazione e un'esecuzione delicata del trattamento riduciamo l'ansia nei bambini.</span></li>
+            <li><strong>Kids Cario Test · Orto Test</strong><span class="t">Valutiamo la salute orale in modo rapido e approfondito, anche con il test salivare.</span></li>
+            <li><strong>Ozonoterapia</strong><span class="t">Usiamo l'ozono per disinfettare le carie, riducendo gli interventi invasivi e favorendo una guarigione rapida.</span></li>
+            <li><strong>Special needs</strong><span class="t">Curiamo i bambini con bisogni speciali grazie a protocolli testati e certificati con sedazione.</span></li>
           </ul>
+          <a href="/v2/odontoiatria-pediatrica" class="btn btn-dark" style="margin-top:26px">BioDent è il dentista dei bambini <span class="ar">→</span></a>
         </div>
       </div>
     </section>
 
-    <!-- METODO (Tell-Show-Do) -->
-    <section class="section deep">
-      <div class="wrap">
-        <div class="sec-head" data-reveal>
-          <div>
-            <span class="eyebrow on-deep">Il nostro metodo</span>
-            <h2>Come mettiamo a loro agio i più piccoli.</h2>
-          </div>
-          <p class="lede" style="color:var(--on-deep-2)">Un approccio psicologico che aiuta i bambini a non temere il dentista, unito a protocolli di sedazione cosciente sicuri ed efficaci.</p>
+    <!-- PERCHÉ SCEGLIERE BIODENT -->
+    <section class="section soft">
+      <div class="wrap split">
+        <div class="split-text" data-reveal>
+          <span class="eyebrow">Il nostro approccio</span>
+          <h2>Perché scegliere BioDent per i tuoi figli.</h2>
+          <p class="sub">Approccio delicato e rassicurante per i piccoli pazienti.</p>
+          <p>Le cure dentali per i bambini richiedono attenzione al benessere psicologico e al comfort dei più piccoli, oltre che competenze specifiche. La Dr.ssa Azzurra Di Cecilia adotta un approccio psicologico che aiuta i piccoli pazienti a sentirsi a loro agio e a non temere le visite dentistiche, combinato a protocolli di <em style="font-style:italic">Sedazione Cosciente</em> sicuri ed efficaci, con cui i bambini si rilassano e avvertono limitatamente il dolore.</p>
+          <p class="strong-line">Scegli i professionisti dell'odontoiatria pediatrica per i tuoi bambini.</p>
         </div>
-        <div class="process" data-reveal>
-          {tellShowDo.map((s) => (
-            <div class="step">
-              <div class="sn">{s.n}</div>
-              <h3>{s.t}</h3>
-              <p>{s.d}</p>
-            </div>
-          ))}
+        <div class="split-media" data-reveal data-reveal-delay="1">
+          <img src={media.studioPhotos[2]} alt="Sala operatoria Studio BioDent — sedazione cosciente per bambini" loading="lazy" />
+          <span class="badge">Sedazione cosciente</span>
         </div>
       </div>
     </section>
 
     <!-- ORTODONZIA -->
-    <section class="section" id="ortodonzia">
-      <div class="wrap split">
-        <div class="split-text" data-reveal>
-          <span class="eyebrow">Ortodonzia</span>
-          <h2>Intercettiva, fissa e <em>invisibile</em>.</h2>
-          <p class="sub">Interveniamo a ogni età per denti dritti e un sorriso sano.</p>
-          <p>Con l'ortodonzia intercettiva preveniamo e correggiamo precocemente le problematiche nei più piccoli, evitando trattamenti futuri più invasivi. Per adolescenti e adulti, apparecchi fissi o allineatori trasparenti: discrezione, comfort e un sorriso perfetto.</p>
-          <a href="/v2/ortodonzia" class="btn btn-dark">Ortodonzia <span class="ar">→</span></a>
+    <section class="section">
+      <div class="wrap split reverse">
+        <div class="split-media" data-reveal>
+          <img src="/img/biodent-home-25.webp" alt="Allineatori trasparenti ortodonzia — BioDent Napoli Salerno Sturno" loading="lazy" />
+          <span class="badge">Allineatori trasparenti</span>
         </div>
-        <div class="split-media" data-reveal data-reveal-delay="1">
-          <img src="/img/biodent-home-25.webp" alt="Allineatori trasparenti — ortodonzia BioDent" loading="lazy" />
-          <span class="badge"><span class="k">Invisalign</span>Allineatori trasparenti</span>
+        <div class="split-text" data-reveal data-reveal-delay="1">
+          <span class="eyebrow">Ortodonzia</span>
+          <h2>Ortodonzia intercettiva, fissa e <em>invisibile</em>.</h2>
+          <p class="sub">Interveniamo a ogni età per garantire denti dritti e un sorriso sano.</p>
+          <p>Con l'ortodonzia intercettiva preveniamo e correggiamo precocemente le problematiche dentali nei più piccoli, evitando trattamenti futuri più invasivi. Per adolescenti e adulti impieghiamo apparecchi fissi o allineatori trasparenti, che garantiscono discrezione e comfort, per una terapia serena e un sorriso perfetto.</p>
+          <a href="/v2/ortodonzia" class="btn btn-dark">Ortodonzia <span class="ar">→</span></a>
         </div>
       </div>
     </section>
 
-    <!-- ODONTOIATRIA ADULTO -->
-    <section class="section soft" id="odontoiatria">
-      <div class="wrap split reverse">
-        <div class="split-media" data-reveal>
-          <img src="/img/odontoiatria-12.webp" alt="Implantologia e odontoiatria dell'adulto — BioDent" loading="lazy" />
-          <span class="badge"><span class="k">Chirurgia guidata</span>Implantologia</span>
-        </div>
-        <div class="split-text" data-reveal data-reveal-delay="1">
+    <!-- ODONTOIATRIA DELL'ADULTO -->
+    <section class="section soft">
+      <div class="wrap split">
+        <div class="split-text" data-reveal>
           <span class="eyebrow">Odontoiatria</span>
           <h2>Odontoiatria dell'adulto.</h2>
-          <p class="sub">Cure avanzate, dagli impianti alle faccette dentali.</p>
-          <p>Con implantologia e chirurgia orale ripristiniamo funzionalità ed estetica del sorriso in modo sicuro e duraturo. Non solo salute: con i trattamenti di estetica dentale come le faccette, il tuo sorriso sarà luminoso e in perfetta armonia.</p>
+          <p class="sub">Cure dentali avanzate, dagli impianti alle faccette dentali.</p>
+          <p>Con le nostre tecniche di implantologia e chirurgia orale ripristiniamo la funzionalità e l'estetica del tuo sorriso in modo sicuro e duraturo. Non solo salute, ma anche bellezza: con i trattamenti di estetica dentale come le faccette dentali, il tuo sorriso sarà luminoso e in perfetta armonia.</p>
           <a href="/v2/odontoiatria" class="btn btn-dark">Odontoiatria generale <span class="ar">→</span></a>
+        </div>
+        <div class="split-media" data-reveal data-reveal-delay="1">
+          <img src="/img/odontoiatria-12.webp" alt="Odontoiatria implantologia adulti — Studio BioDent" loading="lazy" />
+          <span class="badge">Implantologia</span>
         </div>
       </div>
     </section>
 
     <!-- MEDICINA ESTETICA -->
-    <section class="section" id="estetica">
-      <div class="wrap split">
-        <div class="split-text" data-reveal>
+    <section class="section">
+      <div class="wrap split reverse">
+        <div class="split-media" data-reveal>
+          <img src="/img/biodent-home-19.webp" alt="Filler labbra e medicina estetica — BioDent" loading="lazy" />
+          <span class="badge">Medicina estetica</span>
+        </div>
+        <div class="split-text" data-reveal data-reveal-delay="1">
           <span class="eyebrow">Medicina estetica</span>
-          <h2>Valorizziamo la tua <em>naturale bellezza</em>.</h2>
-          <p class="sub">Trattamenti antiage ad Avellino, Salerno e Napoli.</p>
-          <p>I nostri filler e trattamenti riducono le rughe e ridefiniscono i contorni del viso per un aspetto fresco e naturale. Con la biorivitalizzazione restituiamo tonicità e idratazione profonda alla pelle, per un risultato giovane e luminoso.</p>
+          <h2>Medicina estetica ad Avellino, Salerno e Napoli.</h2>
+          <p class="sub">Valorizziamo la tua naturale bellezza con trattamenti antiage.</p>
+          <p>I nostri filler e trattamenti di medicina estetica riducono le rughe e ridefiniscono i contorni del viso per un aspetto fresco e naturale. Con la biorivitalizzazione restituiamo alla tua pelle tonicità e idratazione profonda, per un risultato giovane e luminoso.</p>
           <a href="/v2/medicina-estetica" class="btn btn-dark">Medicina estetica <span class="ar">→</span></a>
         </div>
-        <div class="split-media" data-reveal data-reveal-delay="1">
-          <img src="/img/biodent-home-19.webp" alt="Filler labbra e medicina estetica — BioDent" loading="lazy" />
-          <span class="badge"><span class="k">Anti-age</span>Filler &amp; biorivitalizzazione</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- TECNOLOGIE -->
-    <section class="section deep">
-      <div class="wrap">
-        <div class="sec-head" data-reveal>
-          <div>
-            <span class="eyebrow on-deep">Tecnologie</span>
-            <h2>Strumenti che rendono le cure più semplici.</h2>
-          </div>
-          <p class="lede" style="color:var(--on-deep-2)">Otto tecnologie all'avanguardia, in sede: diagnosi più precise, trattamenti minimamente invasivi e tempi di recupero ridotti.</p>
-        </div>
-        <div class="tech-grid" data-reveal>
-          {technologies.map((t) => (
-            <article class="tech">
-              <div class="tn">{t.n}</div>
-              <h3>{t.t}</h3>
-              <p>{t.d}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- REVIEWS -->
-    <section class="section">
-      <div class="wrap">
-        <div class="sec-head" data-reveal>
-          <div>
-            <span class="eyebrow">Famiglie</span>
-            <h2>Cosa dicono di noi.</h2>
-          </div>
-          <p class="lede">Genitori e pazienti raccontano la loro esperienza nelle tre sedi BioDent.</p>
-        </div>
-      </div>
-      <div class="reviews" data-reveal>
-        {reviews.map((r) => (
-          <figure class="review">
-            <div class="mark">&ldquo;</div>
-            <blockquote class="q">{r.q}</blockquote>
-            <figcaption class="who">
-              <div class="nm">{r.name}</div>
-              <div class="mt">{r.meta}</div>
-            </figcaption>
-          </figure>
-        ))}
       </div>
     </section>
 

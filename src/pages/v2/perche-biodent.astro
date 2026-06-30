@@ -1,0 +1,128 @@
+---
+import BaseLayoutV2 from '../../layouts/BaseLayoutV2.astro';
+import PageHeadV2 from '../../components/v2/PageHeadV2.astro';
+import LocationsV2 from '../../components/v2/LocationsV2.astro';
+import ContactFormV2 from '../../components/v2/ContactFormV2.astro';
+import content from '../../data/biodent-content.json';
+
+const { values, stats, technologies } = content;
+const tac = technologies.find((t) => t.t === 'TC Cone Beam 3D');
+
+const title = 'Perché BioDent';
+const description = 'Perché scegliere il Centro Odontoiatrico BioDent: tradizione familiare lunga 40 anni, tre sedi in Campania, tecnologie avanzate e un team multidisciplinare.';
+
+const differenziatori = [
+  { n: '3', t: 'Sedi', d: 'Sturno, Salerno e Napoli — sempre vicini alle famiglie.' },
+  { n: '40+', t: 'Anni di esperienza', d: 'Una tradizione familiare nata nel 1985, oggi guidata dalla Dr.ssa Azzurra Di Cecilia: quarant\'anni di pratica clinica al servizio del sorriso.' },
+  { n: 'TAC 3D', t: tac?.t ?? 'TC Cone Beam 3D', d: tac?.d ?? null },
+  { n: '∞', t: 'Team multidisciplinare', d: 'Un team multidisciplinare con specializzazioni in pedodonzia, ortodonzia, implantologia e medicina estetica.' },
+];
+---
+
+<BaseLayoutV2 title={title} description={description} canonical="/perche-biodent">
+  <main>
+    <PageHeadV2
+      crumbs={['Home', 'Perché BioDent']}
+      kicker="Perché sceglierci"
+      title="Perché <em>BioDent</em>."
+      sub="Tradizione familiare, sguardo sul futuro."
+      lead="Scegliere BioDent significa affidarsi a una tradizione familiare lunga oltre quarant'anni, oggi guidata dalla Dr.ssa Azzurra Di Cecilia. Un unico centro in cui competenza specialistica, tecnologie d'avanguardia ed empatia si incontrano per prendersi cura di tutta la famiglia — dal primo dentino del bambino all'implantologia dell'adulto — con la stessa attenzione nelle nostre tre sedi di Sturno, Salerno e Napoli."
+    />
+
+    <!-- 4 PUNTI CHIAVE -->
+    <section class="section">
+      <div class="wrap">
+        <div class="stats" data-reveal>
+          {differenziatori.map((d) => (
+            <div class="stat">
+              <div class="n">{d.n}</div>
+              <div class="l">{d.t}</div>
+              <p class="p">{d.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- I NOSTRI VALORI -->
+    <section class="section soft">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <div>
+            <span class="eyebrow">I nostri valori</span>
+            <h2>Professionalità, competenza ed <em style="color:var(--acc-deep)">empatia</em>.</h2>
+          </div>
+          <p class="lede">Da Biodent, ogni sorriso è speciale. Empatia, competenza e professionalità sono i valori che ci guidano ogni giorno.</p>
+        </div>
+        <div class="therapy-list" data-reveal>
+          {values.map((v) => (
+            <div class="therapy">
+              <span class="num">{v.n}</span>
+              <h4>{v.t}</h4>
+              <p>{v.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- STATISTICHE -->
+    <section class="section">
+      <div class="wrap">
+        <div class="stats" data-reveal>
+          {stats.map((s) => (
+            <div class="stat">
+              <div class="n">{s.n}</div>
+              <div class="l">{s.lbl}</div>
+              <p class="p">{s.p}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- UNA FAMIGLIA CHE CURA LE FAMIGLIE -->
+    <section class="section soft">
+      <div class="wrap split">
+        <div class="split-media" data-reveal>
+          <img src="/img/chi-siamo-4.webp" alt="Centro Odontoiatrico BioDent — una tradizione familiare nella cura del sorriso" loading="lazy" />
+          <span class="badge">Dal 1985</span>
+        </div>
+        <div class="split-text" data-reveal data-reveal-delay="1">
+          <span class="eyebrow">Una storia di famiglia</span>
+          <h2>Una famiglia che cura <em>le famiglie</em>.</h2>
+          <p>Da oltre quarant'anni BioDent è il punto di riferimento per la cura dentale delle famiglie del territorio. La Dr.ssa Azzurra Di Cecilia ha raccolto e rinnovato questa eredità, mettendo al centro l'empatia e un'attenzione speciale per i bambini.</p>
+          <p>Per questo impegno BioDent è partner del <em style="font-style:italic">Dentista dei Bambini</em> su Sturno, Salerno e Napoli: la rete nazionale che riunisce solo gli studi che eccellono nelle cure pediatriche per approccio e protocolli. Per i genitori, una doppia garanzia sul sorriso dei propri figli.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECNOLOGIA -->
+    <section class="section">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <div>
+            <span class="eyebrow">Tecnologia</span>
+            <h2>Strumenti d'avanguardia, cure più <em style="color:var(--acc-deep)">delicate</em>.</h2>
+          </div>
+          <p class="lede">Investiamo nelle tecnologie che rendono diagnosi e trattamenti più precisi, rapidi e confortevoli — spesso senza trapano e con tempi di recupero ridotti.</p>
+        </div>
+        <div class="therapy-list" data-reveal>
+          {technologies.map((t) => (
+            <div class="therapy">
+              <span class="num">{t.n}</span>
+              <h4>{t.t}</h4>
+              <p>{t.d}</p>
+            </div>
+          ))}
+        </div>
+        <div style="margin-top:32px">
+          <a href="/v2/tecnologie" class="btn btn-dark">Scopri tutte le tecnologie <span class="ar">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <LocationsV2 tight />
+    <ContactFormV2 />
+  </main>
+</BaseLayoutV2>

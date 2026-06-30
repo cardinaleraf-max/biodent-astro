@@ -1,0 +1,61 @@
+---
+import BaseLayoutV2 from '../../../layouts/BaseLayoutV2.astro';
+import LocationsV2 from '../../../components/v2/LocationsV2.astro';
+import ContactFormV2 from '../../../components/v2/ContactFormV2.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const tecnologie = await getCollection('tecnologie');
+  return tecnologie.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+---
+
+<BaseLayoutV2
+  title={`${d.title} — Tecnologie BioDent`}
+  description={d.metaDescription}
+  canonical={`/tecnologie/${d.slug}`}
+  image={d.immagine}
+>
+  <main>
+    <section class="phead">
+      <div class="wrap">
+        <div class="crumbs"><span>Home</span><span>Tecnologie</span><span>{d.title}</span></div>
+        <div class="phead-grid">
+          <div data-reveal>
+            <span class="eyebrow">Tecnologie</span>
+            <h1>{d.title}</h1>
+          </div>
+          <div data-reveal data-reveal-delay="1">
+            <p class="lede">{d.descrizioneBreve}</p>
+            <div class="phead-cta">
+              <a href="/v2/contatti" class="btn btn-dark">Prenota una visita <span class="ar">→</span></a>
+              <a href="/v2/tecnologie" class="btn btn-ghost">Tutte le tecnologie</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap split">
+        <div class="split-text article" data-reveal>
+          <Content />
+        </div>
+        <div class="split-media" data-reveal data-reveal-delay="1">
+          <img src={d.immagine} alt={d.title} loading="lazy" />
+          <span class="badge">Tecnologia</span>
+        </div>
+      </div>
+    </section>
+
+    <LocationsV2 tight />
+    <ContactFormV2 />
+  </main>
+</BaseLayoutV2>

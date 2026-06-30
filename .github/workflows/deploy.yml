@@ -35,6 +35,14 @@ jobs:
         run: npm run build
 
       # The site keeps `site: centrobiodent.net` (final domain, served at root).
+      # Inside the v2 pages, markdown cross-links point to v1 routes
+      # (/trattamenti/…, /tecnologie/…, /casi/…). Localize them to /v2/ so the
+      # v2 demo stays self-contained. Must run before the base-prefix step below.
+      - name: Localize internal cross-links inside v2
+        run: |
+          find dist/v2 -name '*.html' -exec \
+            sed -i -E 's#href="/(trattamenti|tecnologie|casi)/#href="/v2/\1/#g' {} +
+
       # GitHub Pages serves this project repo under /biodent-astro/, so we rewrite
       # root-relative links/assets in the built HTML to that base path. This keeps
       # the source untouched: only the temporary Pages build is adjusted.
