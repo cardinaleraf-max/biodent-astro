@@ -441,18 +441,23 @@ em { font-style: normal; }
 .wa-float:hover { transform: translateY(-3px); }
 .wa-float svg { width: 28px; height: 28px; }
 
-/* mobile sticky action bar — solid band, content scrolls behind it */
+/* mobile sticky action bar — two full-width halves, edge to edge, no gap/background */
 .sticky-cta {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 92; display: none;
-  gap: 10px; padding: 11px 14px calc(11px + env(safe-area-inset-bottom, 0px));
-  background: var(--bg); border-top: 1px solid var(--line);
-  box-shadow: 0 -14px 34px -22px rgba(21, 25, 27, 0.35);
+  gap: 0; padding: 0;
+  box-shadow: 0 -14px 34px -22px rgba(21, 25, 27, 0.4);
 }
 @media (max-width: 980px) {
   .sticky-cta { display: flex; }
-  .sticky-cta .btn { flex: 1; justify-content: center; padding-block: 14px; }
-  .wa-float { display: none; }   /* avoid a duplicate WhatsApp + overlap with the bar */
-  .foot { padding-bottom: 96px; } /* clear the fixed bar so footer isn't covered */
+  .sticky-cta .btn {
+    flex: 1; justify-content: center; border-radius: 0; box-shadow: none;
+    font-size: 15.5px; padding: 17px 14px calc(17px + env(safe-area-inset-bottom, 0px));
+  }
+  .sticky-cta .btn:first-child { background: #25D366; color: #fff; }
+  .sticky-cta .btn:last-child { background: var(--acc); color: #fff; }
+  .sticky-cta .btn:last-child:hover { background: var(--acc-deep); }
+  .wa-float { display: none; }    /* avoid a duplicate WhatsApp + overlap with the bar */
+  .foot { padding-bottom: 92px; } /* clear the fixed bar so footer isn't covered */
 }
 
 /* ============================================================
